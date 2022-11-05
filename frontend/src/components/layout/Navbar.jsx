@@ -1,4 +1,4 @@
-import { FaDatabase } from 'react-icons/fa'
+import { FaDatabase, FaSignInAlt, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -13,9 +13,12 @@ function Navbar({ title }) {
               </div>
               <div className="flex-1 px-2 mx-2">
                   <div className="flex justify-end">
-                      <Link to='/' className='btn btn-ghost btn-sm rounded-btn'>
-                          Home
+                      <Link to='/login' className='btn btn-ghost btn-sm rounded-btn'>
+                          <FaSignInAlt />Login
                       </Link>
+                      <Link to='/register' className='btn btn-ghost btn-sm rounded-btn'>
+                          <FaUser />Register
+                      </Link>                      
                       <Link to='/assetlist' className='btn btn-ghost btn-sm rounded-btn'>
                         Asset List
                       </Link>
