@@ -9,6 +9,7 @@ import AddAsset from './pages/AddAsset'
 import EditAsset from './pages/EditAsset'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Settings from './pages/Settings'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -23,7 +24,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />                        
+            <Route path='/register' element={<Register />} /> 
+            <Route path='/settings' element={<Settings />} />                                    
             <Route path='/assetlist' element={<AssetList />} />
             <Route path='/addasset' element={<AddAsset />} />
             <Route path='/editasset' element={<EditAsset />} />            

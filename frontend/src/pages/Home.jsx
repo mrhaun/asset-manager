@@ -13,7 +13,12 @@ function Home() {
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
           <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-          <button className="btn btn-primary">Get Started</button>
+          <div className="py-2">
+          <button className="btn btn-primary">Add Asset</button>
+          </div>
+          <div className="py-2">
+          <button className="btn btn-primary">View Assets</button>
+          </div>
         </div>
       </div>
     </div>      
