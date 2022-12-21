@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import PrivateRoute from './components/PrivateRoute'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import AssetList from './pages/AssetList'
@@ -10,8 +11,10 @@ import EditAsset from './pages/EditAsset'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Settings from './pages/Settings'
+
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+
 
 function App() {
   return (
@@ -24,11 +27,17 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} /> 
+            <Route path='/register' element={<Register />} />
+            <Route path='/settings' element={<PrivateRoute />} >             
             <Route path='/settings' element={<Settings />} />                                    
+            </Route>
             <Route path='/assetlist' element={<AssetList />} />
-            <Route path='/addasset' element={<AddAsset />} />
-            <Route path='/editasset' element={<EditAsset />} />            
+            <Route path='/addasset' element={<PrivateRoute />} >
+              <Route path='/addasset' element={<AddAsset/>} />
+            </Route>
+            <Route path='/editasset' element={<PrivateRoute />} >            
+              <Route path='/editasset' element={<EditAsset />} />            
+            </Route>
             <Route path='/notfound' element={<NotFound />} />
             <Route path='/about' element={<About />} />                                    
             <Route path='/*' element={<NotFound />} />                                    
