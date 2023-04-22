@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 
 
+
 const Asset = require('../models/assetModel')
 
 
@@ -81,16 +82,25 @@ const deleteAsset = asyncHandler (async (req, res) => {
     res.status(200).json({ success: true })
 })
 const searchAsset = asyncHandler (async (req, res) => {
+    if (req.body){
+        const assets = await Asset.find(req.body)
+        if (!assets){
+            res.status(404)
+            throw new Error('asset not found')
+        }
+        res.status(200).json( assets )
+    } else {
+        //const assets = await Categories.find({})
+        console.log(assets)
+        if (!assets){
+            res.status(404)
+            throw new Error('asset not found')
+        } else {
+            res.status(200).json( assets )
+        }        
 
-    const assets = await Asset.find(req.body)
-
-    if (!assets){
-        res.status(404)
-        throw new Error('asset not found')
     }
 
-    res.status(200).json( assets )
 })
-
 
 module.exports = {createAsset, searchAsset, getAsset, updateAsset, deleteAsset}

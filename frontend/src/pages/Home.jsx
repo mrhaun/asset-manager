@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 import image from '../components/layout/assets/huracansto.jpg'
 
 
@@ -14,10 +15,8 @@ function Home() {
           <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
           <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
           <div className="py-2">
-          <button className="btn btn-primary">Add Asset</button>
-          </div>
-          <div className="py-2">
-          <button className="btn btn-primary">View Assets</button>
+          <Link to={'/meatsort'} className='btn btn-ghost btn-sm rounded-btn'>
+          meat sort</Link>
           </div>
         </div>
       </div>

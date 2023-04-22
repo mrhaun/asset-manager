@@ -10,9 +10,21 @@ const search = async (assetData, token) => {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.get(API_URL, assetData, config)
-
+    const response = await axios.post(API_URL+'/search', assetData, config)
+    console.log(response.data)    
     return response.data
+
+}
+const getAsset = async (assetId, token) => {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.get(API_URL + assetId, config)
+    return response.data
+
 }
 
 const create = async (assetData, token) => {
@@ -26,31 +38,33 @@ const create = async (assetData, token) => {
 
     return response.data
 }
-const update = async (assetData, token) => {
+const update = async (assetData, assetId, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }    
-    const response = await axios.put(API_URL, assetData, config)
+    const response = await axios.put(API_URL + assetId, assetData, config)
 
     return response.data
 }
-const remove = async (assetData, token) => {
+const remove = async (assetId, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }    
-    const response = await axios.delete(API_URL, assetData, config)
+    const response = await axios.delete(API_URL + assetId, config)
 
     return response.data
 }
+
 
 const assetService = {
     search,
+    getAsset,
     create,
     update,
     remove

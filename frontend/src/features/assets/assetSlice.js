@@ -12,6 +12,7 @@ const initialState = {
     message: '',
 }
 
+
 export const create = createAsyncThunk('asset/create', async (assetData, thunkAPI) => {
 
     try {
@@ -25,12 +26,40 @@ export const create = createAsyncThunk('asset/create', async (assetData, thunkAP
     }
 
 })
-
 export const search = createAsyncThunk('asset/search', async (assetData, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token
+        console.log(token)         
         return await assetService.search(assetData, token)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message)
+        || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+
+    }
+
+})
+
+export const getAsset = createAsyncThunk('asset/getAsset', async (assetData, thunkAPI) => {
+
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await assetService.getAsset(assetData, token)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message)
+        || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+
+    }
+
+})
+
+export const deleteAsset = createAsyncThunk('asset/deleteAsset', async (assetData, thunkAPI) => {
+
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await assetService.remove(assetData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -73,8 +102,33 @@ export const assetSlice = createSlice({
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-            })            
-
+            })      
+            .addCase(getAsset.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getAsset.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.asset = action.payload
+            })
+            .addCase(getAsset.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })                                    
+            .addCase(deleteAsset.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(deleteAsset.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.asset = action.payload
+            })
+            .addCase(deleteAsset.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })    
         
     }
 

@@ -6,6 +6,11 @@ import {create, reset} from '../features/assets/assetSlice'
 import Spinner from '../components/Spinner';  
 import BackButton from '../components/BackButton';
 
+import CategoryOption from '../components/CategoryOption';
+import BrandOption from '../components/BrandOption';
+import SiteOption from '../components/SiteOption';
+
+
 function AddAsset() {
 
   const [assettag, setAssettag] = useState('')
@@ -13,7 +18,7 @@ function AddAsset() {
   const [brand, setBrand] = useState('')
   const [model, setModel] = useState('')
   const [description, setDescription] = useState('')
-  const [serialnumber, setSerialnumber] = useState('') 
+  const [serialnumber, setSerialnumber] = useState('')  
   const [purchasedate, setPurchasedate] = useState('')
   const [cost, setCost] = useState('')
   const [estimatedvalue, setEstimatedvalue] = useState('')
@@ -25,7 +30,6 @@ function AddAsset() {
   const dispatch = useDispatch()
   const navigate = useNavigate()    
   const {assets, asset, isError, isSuccess, isLoading, message} = useSelector((state) => state.asset)
- 
 
   useEffect(() => {
 
@@ -33,8 +37,9 @@ function AddAsset() {
       toast.error(message)
     }
     if (isSuccess) {
+      
       dispatch(reset())
-      navigate('/')
+      navigate('/assetlist')
 
     }
     dispatch(reset())
@@ -74,21 +79,19 @@ function AddAsset() {
 <form onSubmit={onSubmit}>
   <div className="-mx-3 md:flex mb-6">
     <div className="md:w-1/2 px-3 mb-6 md:mb-0">      
-    <label className="label" for="assettag">
+    <label className="label" htmlFor="assettag">
         Asset Tag
       </label>
       <input name="assettag" value={assettag} onChange={(e) => setAssettag(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="assettag" type="text" />
       <p className="text-red text-xs italic">Please fill out this field.</p>    
     </div>
     <div className="md:w-1/2 px-3">
-      <label className="label"  for="category">
+      <label className="label"  htmlFor="category">
         Category
       </label>
       <div className="relative">
         <select name="category" value={category} onChange={(e) => setCategory(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="category">
-          <option>Monitor</option>
-          <option>PC components</option>
-          <option>Mobile Phone</option>
+          <CategoryOption/>
         </select>
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -96,14 +99,12 @@ function AddAsset() {
       </div>
     </div>
     <div className="md:w-1/2 px-3">
-      <label className="label"  for="brand">
+      <label className="label"  htmlFor="brand">
         Brand
       </label>
       <div className="relative">
         <select name="brand" value={brand} onChange={(e) => setBrand(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="brand">
-          <option>Asus</option>
-          <option>MSI</option>
-          <option>hp</option>
+          <BrandOption/>
         </select>
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -111,39 +112,41 @@ function AddAsset() {
       </div>
     </div>
     <div className="md:w-1/2 px-3">
-      <label className="label" for="model">
+      <label className="label" htmlFor="model">
         Model
       </label>
       <input name="model" value={model} onChange={(e) => setModel(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="model" type="text"/>
     </div>         
-    <div className="md:w-1/2 px-3">
-      <label className="label" for="description">
+  </div>
+  <div className="-mx-3 md:flex mb-6">
+  <div className="md:w-full px-3">    
+      <label className="label" htmlFor="description">
         Description
       </label>
       <input name="description" value={description} onChange={(e) => setDescription(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="description" type="text"/>
-    </div>
-  </div>
+    </div>  
+  </div>  
   <div className="-mx-3 md:flex mb-6">    
     <div className="md:w-1/2 px-3">
-      <label className="label" for="serialnumber">
+      <label className="label" htmlFor="serialnumber">
        Serial Number
       </label>
       <input name="serialnumber" value={serialnumber} onChange={(e) => setSerialnumber(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="serialnumber" type="text"/>
     </div>     
     <div className="md:w-1/2 px-3">
-      <label className="label" for="purchasedate">
+      <label className="label" htmlFor="purchasedate">
         Purchase Date
       </label>
       <input name="purchasedate" value={purchasedate} onChange={(e) => setPurchasedate(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="purchasedate" type="date"/>
     </div>
     <div className="md:w-1/2 px-3">
-      <label className="label" for="cost">
+      <label className="label" htmlFor="cost">
        Cost
       </label>
       <input name="cost" value={cost} onChange={(e) => setCost(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="cost" type="text"/>
     </div>   
     <div className="md:w-1/2 px-3">
-      <label className="label" for="value">
+      <label className="label" htmlFor="value">
        Estimated Value
       </label>
       <input name="estimatedvalue" value={estimatedvalue} onChange={(e) => setEstimatedvalue(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="value" type="text"/>
@@ -151,14 +154,12 @@ function AddAsset() {
   </div>   
   <div className="-mx-3 md:flex mb-6">
     <div className="md:w-1/2 px-3">
-      <label className="label"  for="site">
+      <label className="label"  htmlFor="site">
         Site
       </label>
       <div className="relative">
         <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
-          <option>New Mexico</option>
-          <option>Missouri</option>
-          <option>Texas</option>
+          <SiteOption/>
         </select>
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -166,7 +167,7 @@ function AddAsset() {
       </div>
     </div>
     <div className="md:w-1/2 px-3">
-      <label className="label"  for="department">
+      <label className="label"  htmlFor="department">
         Department
       </label>
       <div className="relative">
@@ -181,7 +182,7 @@ function AddAsset() {
       </div>
     </div>
     <div className="md:w-1/2 px-3">
-      <label className="label"  for="location">
+      <label className="label"  htmlFor="location">
         Location
       </label>
       <div className="relative">
