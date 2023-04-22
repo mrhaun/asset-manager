@@ -32,7 +32,7 @@ function UpdateCategory() {
         }
       }
       
-    }, [dispatch, isSuccess, updateComplete, isError])
+    }, [dispatch, isSuccess, updateComplete, isError, message, categoryId, category.name])
   
     if (isLoading) {
       return <Spinner />
@@ -44,11 +44,11 @@ function UpdateCategory() {
    const handleUpdateCategory = (e) => {
     e.preventDefault()
 
-    const category ={
+    const categoryData ={
       name: updatedCategory
     }
 
-    dispatch(updateCategory({category,categoryId}))
+    dispatch(updateCategory({categoryData,categoryId}))
   }
   const handleDeleteCategory = (e) => {
     e.preventDefault()
