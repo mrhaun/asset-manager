@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useDispatch, useSelector} from 'react-redux'
-import {createDepartment, reset} from '../features//department/departmentSlice'
+import {createLocation, reset} from '../features/location/locationSlice'
 import Spinner from '../components/Spinner';  
 import BackButton from '../components/BackButton';
 
 
 
-function CreateDepartment() {
-  const [newDepartment, setNewDepartment] = useState('')
-  const {isLoading, isSuccess, isError, updateComplete, message} = useSelector((state) => state.department) 
+function CreateLocation() {
+  const [newLocation, setNewLocation] = useState('')
+  const {isLoading, isSuccess, isError, updateComplete, message} = useSelector((state) => state.location) 
   const dispatch = useDispatch()
   const navigate = useNavigate() 
   
@@ -21,7 +21,7 @@ function CreateDepartment() {
     if(updateComplete) {
       toast.success('Asset Added')      
       dispatch(reset())      
-      navigate('/departments') 
+      navigate('/locations') 
     }     
     return () => {
       if(isSuccess) {
@@ -35,14 +35,14 @@ function CreateDepartment() {
   }
 
 
-  const handleAddDepartment = (e) => {
+  const handleAddLocation = (e) => {
     e.preventDefault()
 
     const assetData ={
-      name: newDepartment
+      name: newLocation
     }
 
-    dispatch(createDepartment(assetData))
+    dispatch(createLocation(assetData))
   }
 
 
@@ -52,25 +52,25 @@ return (
 
 <div className=" shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
   <div className="relative py-6">
-    <BackButton url='/departments' />
+    <BackButton url='/locations' />
   </div>
-  <form onSubmit={handleAddDepartment}>
+  <form onSubmit={handleAddLocation}>
   <div className="-mx-3 md:flex mb-6">
     <div className="md:w-1/2 px-3 mb-6 md:mb-0">      
     <label className="label">
-        Department
+        Location
       </label>
-      <input name="newDepartment" value={newDepartment} onChange={(e) => setNewDepartment(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newDepartment" type="text" />
+      <input name="newLocation" value={newLocation} onChange={(e) => setNewLocation(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newLocation" type="text" />
       <p className="text-red text-xs italic">Please fill out this field.</p>    
     </div>
     </div>
     <div className="form-control mt-6">
       <div className="relative">
-      <button className="btn btn-primary">Add Department</button>
+      <button className="btn btn-primary">Add Location</button>
     </div>
     </div>    
   </form>
 </div>
   ) 
 }
-export default CreateDepartment
+export default CreateLocation
