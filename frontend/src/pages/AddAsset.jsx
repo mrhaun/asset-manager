@@ -9,7 +9,8 @@ import BackButton from '../components/BackButton';
 import CategoryOption from '../components/CategoryOption';
 import BrandOption from '../components/BrandOption';
 import SiteOption from '../components/SiteOption';
-
+import DepartmentOption from '../components/DepartmentOption';
+import LocationOption from '../components/LocationOption';
 
 function AddAsset() {
 
@@ -22,6 +23,8 @@ function AddAsset() {
   const [purchasedate, setPurchasedate] = useState('')
   const [cost, setCost] = useState('')
   const [estimatedvalue, setEstimatedvalue] = useState('')
+  const [warrantystartdate, setwarrantystartdate] = useState('')  
+  const [warrantyenddate, setwarrantyenddate] = useState('')
   const [site, setSite] = useState('')
   const [department, setDepartment] = useState('')
   const [location, setLocation] = useState('')
@@ -59,6 +62,8 @@ function AddAsset() {
       purchasedate,
       cost,
       estimatedvalue,
+      warrantystartdate,
+      warrantyenddate,
       site,
       department,
       location 
@@ -152,6 +157,20 @@ function AddAsset() {
       <input name="estimatedvalue" value={estimatedvalue} onChange={(e) => setEstimatedvalue(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="value" type="text"/>
     </div>   
   </div>   
+  <div className="-mx-3 md:flex mb-6">    
+    <div className="md:w-1/2 px-3">
+      <label className="label" htmlFor="warrantystartdate">
+       Warranty Start Date
+      </label>
+      <input name="warrantystartdate" value={warrantystartdate} onChange={(e) => setwarrantystartdate(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="warrantystartdate" type="date"/>
+    </div>     
+    <div className="md:w-1/2 px-3">
+      <label className="label" htmlFor="warrantyenddate">
+        Warranty End Date
+      </label>
+      <input name="warrantyenddate" value={warrantyenddate} onChange={(e) => setwarrantyenddate(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="warrantyenddate" type="date"/>
+    </div>  
+  </div>    
   <div className="-mx-3 md:flex mb-6">
     <div className="md:w-1/2 px-3">
       <label className="label"  htmlFor="site">
@@ -172,9 +191,7 @@ function AddAsset() {
       </label>
       <div className="relative">
         <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
-          <option>New Mexico</option>
-          <option>Missouri</option>
-          <option>Texas</option>
+          <DepartmentOption/>
         </select>
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -187,9 +204,7 @@ function AddAsset() {
       </label>
       <div className="relative">
         <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
-          <option>New Mexico</option>
-          <option>Missouri</option>
-          <option>Texas</option>
+          <LocationOption/>
         </select>
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -199,7 +214,7 @@ function AddAsset() {
   </div>
   <div className="form-control mt-6">
       <div className="relative">
-      <button className="btn btn-primary">Create</button>
+      <button className="btn btn-primary">Create Asset</button>
     </div>
     </div>    
   </form>

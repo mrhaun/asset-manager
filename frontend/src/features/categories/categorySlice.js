@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-import categoriesService from './categoriesService'
+import categoryService from './categoryService'
 
 
 
@@ -18,7 +18,7 @@ export const createCategory = createAsyncThunk('categories/createCategory', asyn
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await categoriesService.create(categoryData, token)
+        return await categoryService.create(categoryData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -32,7 +32,7 @@ export const search = createAsyncThunk('categories/search', async (categoryData,
 
     try {
         const token = thunkAPI.getState().auth.user.token    
-        return await categoriesService.search(categoryData, token)
+        return await categoryService.search(categoryData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -45,7 +45,7 @@ export const getCategory = createAsyncThunk('categories/getCategory', async (cat
 
     try {
         const token = thunkAPI.getState().auth.user.token      
-        return await categoriesService.get(categoryId, token)
+        return await categoryService.get(categoryId, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -59,7 +59,7 @@ export const updateCategory = createAsyncThunk('categories/updateCategory', asyn
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await categoriesService.update(categoryData.categoryId, categoryData.category, token)
+        return await categoryService.update(categoryData.categoryId, categoryData.category, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -73,7 +73,7 @@ export const deleteCategory = createAsyncThunk('categories/deleteCategory', asyn
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await categoriesService.remove(categoryId, token)
+        return await categoryService.remove(categoryId, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -83,8 +83,8 @@ export const deleteCategory = createAsyncThunk('categories/deleteCategory', asyn
 
 })
 
-export const categoriesSlice = createSlice({
-    name: 'categories',
+export const categorySlice = createSlice({
+    name: 'category',
     initialState,
     reducers: {
         reset: (state) => initialState,
@@ -162,5 +162,5 @@ export const categoriesSlice = createSlice({
 
 })
 
-export const {reset} = categoriesSlice.actions
-export default categoriesSlice.reducer
+export const {reset} = categorySlice.actions
+export default categorySlice.reducer

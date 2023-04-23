@@ -1,11 +1,11 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-import departmentService from './departmentService'
+import locationService from './locationService'
 
 
 
 const initialState = {
-    departments: [],
-    department: {},
+    locations: [],
+    location: {},
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -14,11 +14,11 @@ const initialState = {
 }
 
 
-export const createDepartment = createAsyncThunk('departments/createDepartment', async (departmentData, thunkAPI) => {
+export const createLocation = createAsyncThunk('locations/createLocation', async (LocationData, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await departmentService.create(departmentData, token)
+        return await locationService.create(LocationData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -28,11 +28,11 @@ export const createDepartment = createAsyncThunk('departments/createDepartment',
 
 })
 
-export const search = createAsyncThunk('departments/search', async (departmentData, thunkAPI) => {
+export const search = createAsyncThunk('locations/search', async (departmentData, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token    
-        return await departmentService.search(departmentData, token)
+        return await locationService.search(departmentData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -41,11 +41,11 @@ export const search = createAsyncThunk('departments/search', async (departmentDa
     }
 
 })
-export const getDepartment = createAsyncThunk('departments/getDepartment', async (departmentId, thunkAPI) => {
+export const getLocation = createAsyncThunk('locations/getLocation', async (departmentId, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token      
-        return await departmentService.get(departmentId, token)
+        return await locationService.get(departmentId, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -55,11 +55,11 @@ export const getDepartment = createAsyncThunk('departments/getDepartment', async
 
 })
 
-export const updateDepartment = createAsyncThunk('departments/updateDepartment', async (departmentData, thunkAPI) => {
+export const updateLocation = createAsyncThunk('locations/updateLocation', async (departmentData, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await departmentService.update(departmentData.departmentId, departmentData.department, token)
+        return await locationService.update(departmentData.departmentId, departmentData.location, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -69,11 +69,11 @@ export const updateDepartment = createAsyncThunk('departments/updateDepartment',
 
 })
 
-export const deleteDepartment = createAsyncThunk('departments/deleteDepartment', async (departmentId, thunkAPI) => {
+export const deleteLocation = createAsyncThunk('locations/deleteLocation', async (departmentId, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await departmentService.remove(departmentId, token)
+        return await locationService.remove(departmentId, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -83,8 +83,8 @@ export const deleteDepartment = createAsyncThunk('departments/deleteDepartment',
 
 })
 
-export const departmentSlice = createSlice({
-    name: 'departments',
+export const locationSlice = createSlice({
+    name: 'location',
     initialState,
     reducers: {
         reset: (state) => initialState,
@@ -92,15 +92,15 @@ export const departmentSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder 
-            .addCase(createDepartment.pending, (state) => {
+            .addCase(createLocation.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(createDepartment.fulfilled, (state) => {
+            .addCase(createLocation.fulfilled, (state) => {
                 state.isLoading = false
                 state.isSuccess = true     
                 state.updateComplete = true                             
             })
-            .addCase(createDepartment.rejected, (state, action) => {
+            .addCase(createLocation.rejected, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = false
                 state.isError = true
@@ -112,47 +112,47 @@ export const departmentSlice = createSlice({
             .addCase(search.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.departments = action.payload
+                state.locations = action.payload
             })
             .addCase(search.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
-            .addCase(getDepartment.pending, (state) => {
+            .addCase(getLocation.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(getDepartment.fulfilled, (state, action) => {
+            .addCase(getLocation.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.Department = action.payload
+                state.location = action.payload
             })
-            .addCase(getDepartment.rejected, (state, action) => {
+            .addCase(getLocation.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })            
-            .addCase(updateDepartment.pending, (state) => {
+            .addCase(updateLocation.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(updateDepartment.fulfilled, (state) => {
+            .addCase(updateLocation.fulfilled, (state) => {
                 state.isLoading = false
                 state.isSuccess = true
                 state.updateComplete = true                
             })
-            .addCase(updateDepartment.rejected, (state, action) => {
+            .addCase(updateLocation.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })            
-            .addCase(deleteDepartment.pending, (state) => {
+            .addCase(deleteLocation.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(deleteDepartment.fulfilled, (state, action) => {
+            .addCase(deleteLocation.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
             })
-            .addCase(deleteDepartment.rejected, (state, action) => {
+            .addCase(deleteLocation.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
@@ -162,5 +162,5 @@ export const departmentSlice = createSlice({
 
 })
 
-export const {reset} = departmentSlice.actions
-export default departmentSlice.reducer
+export const {reset} = locationSlice.actions
+export default locationSlice.reducer

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useDispatch, useSelector} from 'react-redux'
-import {createCategory, reset} from '../features/categories/categoriesSlice'
+import {createCategory, reset} from '../features/categories/categorySlice'
 import Spinner from '../components/Spinner';  
 import BackButton from '../components/BackButton';
 
@@ -10,7 +10,7 @@ import BackButton from '../components/BackButton';
 
 function CreateCategory() {
   const [newCategory, setNewCategory] = useState('')
-  const {isLoading, isSuccess, isError, updateComplete, message} = useSelector((state) => state.categories) 
+  const {isLoading, isSuccess, isError, updateComplete, message} = useSelector((state) => state.category) 
   const dispatch = useDispatch()
   const navigate = useNavigate() 
   

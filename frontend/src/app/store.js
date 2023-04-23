@@ -1,16 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from '../features/auth/authSlice'
 import assetReducer from '../features/assets/assetSlice'
-import categoriesReducer from '../features/categories/categoriesSlice'
+import categoryReducer from '../features/categories/categorySlice'
 import brandReducer from '../features/brands/brandSlice'
 import siteReducer from '../features/sites/siteSlice'
+import locationReducer from '../features/locations/locationSlice'
+import departmentReducer from '../features/departments/departmentSlice'
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
         asset: assetReducer,
-        categories: categoriesReducer,
+        category: categoryReducer,
         brand: brandReducer,
         site: siteReducer,
+        department: departmentReducer,
+        location: locationReducer
     },
 })

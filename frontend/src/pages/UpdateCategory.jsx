@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
-import {reset, getCategory, updateCategory, deleteCategory, search} from '../features/categories/categoriesSlice'
+import {reset, getCategory, updateCategory, deleteCategory} from '../features/categories/categorySlice'
 import Spinner from '../components/Spinner';  
 import BackButton from '../components/BackButton';
 
 
 function UpdateCategory() {
     const [updatedCategory, setUpdatedCategory] = useState('')
-    const {category, isLoading, isSuccess, updateComplete, isError, message} = useSelector((state) => state.categories)
+    const {category, isLoading, isSuccess, updateComplete, isError, message} = useSelector((state) => state.category)
 
     const dispatch = useDispatch() 
     const navigate = useNavigate()        

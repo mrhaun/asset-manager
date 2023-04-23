@@ -62,7 +62,7 @@ const remove = async (categoryId, token) => {
 
     return response.data
 }
-const categoriesService = {
+const categoryService = {
     search,
     get,
     create,
@@ -71,4 +71,4 @@ const categoriesService = {
 
 }
 
-export default categoriesService
+export default categoryService

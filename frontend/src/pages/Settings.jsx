@@ -38,7 +38,15 @@ function Settings() {
   <div className="relative py-6">
     <Link to={'/sites'} className='btn btn-primary'>
           Sites</Link>
-  </div>    
+  </div>  
+  <div className="relative py-6">
+    <Link to={'/departments'} className='btn btn-primary'>
+          Departments</Link>
+  </div>  
+  <div className="relative py-6">
+    <Link to={'/locations'} className='btn btn-primary'>
+          Locations</Link>
+  </div>        
 </div>
   )
 }

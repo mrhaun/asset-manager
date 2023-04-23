@@ -30,6 +30,12 @@ const assetSchema = mongoose.Schema({
     value: {
         type: String,
     },
+    warrantystartdate: {
+        type: String,
+    },
+    warrantyenddate: {
+        type: String,
+    },        
     site: {
         type: String,
     },
