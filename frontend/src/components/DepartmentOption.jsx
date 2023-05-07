@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import {reset, search} from '../features/departments/DepartmentSlice'
+import {reset, search} from '../features/departments/departmentSlice'
 
 function DepartmentOption() {
   const {departments, isSuccess, isError, message} = useSelector((state) => state.department) 

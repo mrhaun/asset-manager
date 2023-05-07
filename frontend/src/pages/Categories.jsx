@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import {Link} from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
-import {reset, search} from '../features/categories/categoriesSlice'
+import {reset, search} from '../features/categories/categorySlice'
 import Spinner from '../components/Spinner';  
 import BackButton from '../components/BackButton';
 import CategoryItem from '../components/CategoryItem';
 
 function Categories() {
-  const {categories, isLoading, isSuccess, isError, message} = useSelector((state) => state.categories) 
+  const {categories, isLoading, isSuccess, isError, message} = useSelector((state) => state.category) 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(search())    

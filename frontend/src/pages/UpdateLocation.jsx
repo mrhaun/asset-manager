@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
-import {reset, getLocation, updateLocation, deleteLocation} from '../features/locations/LocationSlice'
+import {reset, getLocation, updateLocation, deleteLocation} from '../features/locations/locationSlice'
 import Spinner from '../components/Spinner';  
 import BackButton from '../components/BackButton';
 

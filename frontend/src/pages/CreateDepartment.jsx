@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useDispatch, useSelector} from 'react-redux'
-import {createDepartment, reset} from '../features//department/departmentSlice'
+import {createDepartment, reset} from '../features/departments/departmentSlice'
 import Spinner from '../components/Spinner';  
 import BackButton from '../components/BackButton';
 

@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {reset, search} from '../features/categories/categorySlice'
 
 function CategoryOption() {
-  const {categories, isSuccess, isError, message} = useSelector((state) => state.categories) 
+  const {categories, isSuccess, isError, message} = useSelector((state) => state.category) 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(search())    
