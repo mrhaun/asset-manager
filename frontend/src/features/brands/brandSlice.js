@@ -9,6 +9,7 @@ const initialState = {
     isError: false,
     isSuccess: false,
     isLoading: false,
+    updateComplete: false,    
     message: '',
 }
 
@@ -38,7 +39,7 @@ export const search = createAsyncThunk('brand/search', async (brandData, thunkAP
         return thunkAPI.rejectWithValue(message)
 
     }
-
+ 
 })
 export const getBrand = createAsyncThunk('brand/getBrand', async (brandId, thunkAPI) => {
 
@@ -97,6 +98,7 @@ export const brandSlice = createSlice({
             .addCase(createBrand.fulfilled, (state) => {
                 state.isLoading = false
                 state.isSuccess = true
+                state.updateComplete = true  
             })
             .addCase(createBrand.rejected, (state, action) => {
                 state.isLoading = false
@@ -135,6 +137,7 @@ export const brandSlice = createSlice({
             .addCase(updateBrand.fulfilled, (state) => {
                 state.isLoading = false
                 state.isSuccess = true
+                state.updateComplete = true  
             })
             .addCase(updateBrand.rejected, (state, action) => {
                 state.isLoading = false

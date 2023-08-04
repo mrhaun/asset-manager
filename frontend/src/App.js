@@ -104,8 +104,8 @@ function App() {
             <Route path='/assetdetails/:assetId' element={<PrivateRoute />} >
               <Route path='/assetdetails/:assetId' element={<AssetDetails/>} />
             </Route>
-            <Route path='/editasset' element={<PrivateRoute />} >            
-              <Route path='/editasset' element={<EditAsset />} />            
+            <Route path='/editasset/:assetId' element={<PrivateRoute />} >            
+              <Route path='/editasset/:assetId' element={<EditAsset />} />            
             </Route>
             <Route path='/notfound' element={<NotFound />} />
             <Route path='/about' element={<About />} />                                    

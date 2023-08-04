@@ -35,27 +35,30 @@ const createAsset = asyncHandler (async (req, res) => {
 const updateAsset = asyncHandler (async (req, res) => {
     const {assettag} = req.body
 
-    if (!assettag) {
+    if (!assettag) { 
         res.status(400)
         throw new Error('missing asset tag')
     }
-    const assetTagExists = await Asset.findOne({assettag})
+    const currentAssetTag = await Asset.findById(req.params.id)
 
-    if(assetTagExists) {
-        res.status(400)
-        throw new Error('Asset tag already exists')
-    }
+    if(currentAssetTag.assettag != assettag ) {
+        const assetTagExists = await Asset.findOne({assettag})
 
-
-    const updatedAsset = await Asset.findByIdAndUpdate(req.params.id, req.body)
-
-    if (updatedAsset){
-        res.status(201).json(updatedAsset)
+        if(assetTagExists) {
+            res.status(400)
+            throw new Error('Asset tag already exists')
+        }
     } else {
-        res.status(400)
-        throw new Error('Invalid asset data')
-    }
+        const updatedAsset = await Asset.findByIdAndUpdate(req.params.id, req.body)
 
+        if (updatedAsset){
+            res.status(201).json(updatedAsset)
+        } else {
+            res.status(400)
+            throw new Error('Invalid asset data')
+        }
+
+    }
 })
 const getAsset = asyncHandler (async (req, res) => {
 

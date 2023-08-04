@@ -16,7 +16,7 @@ function AddAsset() {
 
   const [assettag, setAssettag] = useState('')
   const [category, setCategory] = useState('')
-  const [brand, setBrand] = useState('')
+  const [brand, setBrand] = useState('') 
   const [model, setModel] = useState('')
   const [description, setDescription] = useState('')
   const [serialnumber, setSerialnumber] = useState('')  

@@ -15,7 +15,7 @@ function UpdateBrand() {
     const navigate = useNavigate()        
     const {brandId} = useParams()
 
-    useEffect(() => {
+    useEffect(() => { 
       if(isError){
         toast.error(message)
       } else {
