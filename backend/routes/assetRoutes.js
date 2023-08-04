@@ -46,7 +46,31 @@ const {
         getLocations,
         addLocation
     
-      } = require('../controllers/locationController')                          
+      } = require('../controllers/locationController')
+      const { 
+        getStatus,
+        updateStatus,
+        deleteStatus,
+        getStatuses,
+        addStatus
+    
+      } = require('../controllers/statusController')
+      const { 
+        getEvent,
+        updateEvents,
+        deleteEvents,
+        getEvents,
+        addEvents
+    
+      } = require('../controllers/eventsController')
+      const { 
+        getEmployee,
+        updateEmployee,
+        deleteEmployee,
+        getEmployees,
+        addEmployee
+    
+      } = require('../controllers/employeeController')                                            
 
 const {protect} = require('../middleware/authMiddleware')
 
