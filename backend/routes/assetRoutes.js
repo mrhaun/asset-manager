@@ -57,10 +57,10 @@ const {
       } = require('../controllers/statusController')
       const { 
         getEvent,
-        updateEvents,
-        deleteEvents,
+        updateEvent,
+        deleteEvent,
         getEvents,
-        addEvents
+        addEvent
     
       } = require('../controllers/eventsController')
       const { 
@@ -97,5 +97,17 @@ router.route('/departments/search').post(protect, getDepartments)
 router.route('/locations/:id').get(protect, getLocation).put(protect, updateLocation).delete(protect, deleteLocation)
 router.route('/locations').post(protect, addLocation)
 router.route('/locations/search').post(protect, getLocations)
+
+router.route('/status/:id').get(protect, getStatus).put(protect, updateStatus).delete(protect, deleteStatus)
+router.route('/status').post(protect, addStatus)
+router.route('/status/search').post(protect, getStatuses)
+
+router.route('/events/:id').get(protect, getEvents).put(protect, updateEvent).delete(protect, deleteEvent)
+router.route('/events').post(protect, addEvent)
+router.route('/events/search').post(protect, getEvents)
+
+router.route('/employees/:id').get(protect, getEmployee).put(protect, updateEmployee).delete(protect, deleteEmployee)
+router.route('/employees').post(protect, addEmployee)
+router.route('/employees/search').post(protect, getEmployees)
 
 module.exports = router

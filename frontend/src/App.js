@@ -27,6 +27,12 @@ import CreateDepartment from './pages/CreateDepartment'
 import Locations from './pages/Locations'
 import UpdateLocation from './pages/UpdateLocation'
 import CreateLocation from './pages/CreateLocation'
+import Employees from './pages/Employees'
+import UpdateEmployee from './pages/UpdateEmployee'
+import CreateEmployee from './pages/CreateEmployee'
+import Status from './pages/Status'
+import UpdateStatus from './pages/UpdateStatus'
+import CreateStatus from './pages/CreateStatus'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -96,6 +102,26 @@ function App() {
             <Route path='/createdepartment' element={<PrivateRoute />} >             
             <Route path='/createdepartment' element={<CreateDepartment />} />                                    
             </Route> 
+
+            <Route path='/departments' element={<PrivateRoute />} >             
+            <Route path='/departments' element={<Status />} />                                    
+            </Route>            
+            <Route path='/updatestatus/:statusId' element={<PrivateRoute />} >             
+            <Route path='/updatestatus/:statusId' element={<UpdateStatus />} />                                    
+            </Route>
+            <Route path='/createstatus' element={<PrivateRoute />} >             
+            <Route path='/createstatus' element={<CreateStatus />} />                                    
+            </Route>             
+
+            <Route path='/employees' element={<PrivateRoute />} >             
+            <Route path='/employees' element={<Employees />} />                                    
+            </Route>            
+            <Route path='/updateemployee/:employeeId' element={<PrivateRoute />} >             
+            <Route path='/updateemployee/:employeeId' element={<UpdateEmployee />} />                                    
+            </Route>
+            <Route path='/createemployee' element={<PrivateRoute />} >             
+            <Route path='/createemployee' element={<CreateEmployee />} />                                    
+            </Route>                         
 
             <Route path='/assetlist' element={<AssetList />} />
             <Route path='/addasset' element={<PrivateRoute />} >

@@ -73,7 +73,7 @@ function AssetDetails() {
       <div className="card-body">
       <h2 className="card-title">Status:</h2>
       <p>{asset.assettag}</p>
-      <Link to={`/updatestatus/${asset._id}`} className='btn btn-ghost btn-sm rounded-btn'>
+      <Link to={`/updateassetstatus/${asset._id}`} className='btn btn-ghost btn-sm rounded-btn'>
         update status</Link>
     
       <h2 className="card-title">Event History:</h2>              

@@ -1,68 +1,68 @@
 import axios from 'axios'
 
 
-const API_URL = '/api/assets/status/'
+const API_URL = '/api/assets/employees/'
 
-const search = async (statusData, token) => {
-
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
-    const response = await axios.post(API_URL+'/search', statusData, config)   
-    return response.data
-
-}
-
-const get = async (statusId, token) => {
+const search = async (employeeData, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.get(API_URL+ statusId, config)   
+    const response = await axios.post(API_URL+'/search', employeeData, config)   
     return response.data
 
 }
 
-const create = async (statusData, token) => {
+const get = async (employeeId, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.post(API_URL, statusData, config)
-
+    const response = await axios.get(API_URL+ employeeId, config)   
     return response.data
+
 }
 
-const update = async (statusId, statusData, token) => {
+const create = async (employeeData, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.put(API_URL+ statusId, statusData, config)
+    const response = await axios.post(API_URL, employeeData, config)
 
     return response.data
 }
 
-const remove = async (statusId, token) => {
+const update = async (employeeId, employeeData, token) => {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.put(API_URL+ employeeId, employeeData, config)
+
+    return response.data
+}
+
+const remove = async (employeeId, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }    
-    const response = await axios.delete(API_URL + statusId, config)
+    const response = await axios.delete(API_URL + employeeId, config)
 
     return response.data
 }
-const statusService = {
+const employeeService = {
     search,
     get,
     create,
@@ -71,4 +71,4 @@ const statusService = {
 
 }
 
-export default statusService
+export default employeeService

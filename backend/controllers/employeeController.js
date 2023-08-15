@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler')
 const Employee = require('../models/employeeModel')
 
 
-const createEmployee = asyncHandler (async (req, res) => {
+const addEmployee = asyncHandler (async (req, res) => {
     const {email} = req.body
 
     if (!email) {
@@ -97,4 +97,4 @@ const deleteEmployee = asyncHandler (async (req, res) => {
 })
 
 
-module.exports = {createEmployee, searchEmployee, getEmployee, updateEmployee, deleteEmployee}
+module.exports = {addEmployee, getEmployees, getEmployee, updateEmployee, deleteEmployee}

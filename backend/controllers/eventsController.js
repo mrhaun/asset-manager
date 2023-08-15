@@ -5,27 +5,27 @@ const asyncHandler = require('express-async-handler')
 const Events = require('../models/eventsModel')
 
 
-const addEvents = asyncHandler (async (req, res) => {
+const addEvent = asyncHandler (async (req, res) => {
     
     const {name} = req.body
     
     if (!name) {
         res.status(400)
-        throw new Error('missing events')
+        throw new Error('missing event name')
     }
-    const eventsExists = await Events.findOne({name})
+    const eventExists = await Events.findOne({name})
 
-    if(eventsExists) {
+    if(eventExists) {
         res.status(400)
-        throw new Error('events already exists')
+        throw new Error('event already exists')
     }
 
 
-    const newevents = await Events.create(req.body)
+    const newEvent = await Events.create(req.body)
 
-    if (newevents){
+    if (newEvent){
         res.status(201).json({
-            newevents
+            newEvent
         })
     } else {
         res.status(400)
@@ -34,63 +34,63 @@ const addEvents = asyncHandler (async (req, res) => {
 
 })
 const getEvents = asyncHandler (async (req, res) => {
-    const EventsList = await Events.find({})
+    const eventsList = await Events.find({})
 
-    if (!EventsList){
+    if (!eventsList){
         res.status(404)
         throw new Error('events not found')
     } else {
         
-        res.status(200).json( EventsList )
+        res.status(200).json( eventsList )
     }        
 })
-const getevents = asyncHandler (async (req, res) => {
+const getEvent = asyncHandler (async (req, res) => {
     if (req.params.id){
-        const events = await Events.findById(req.params.id)
+        const event = await Events.findById(req.params.id)
 
-        if (!events){
+        if (!event){
             res.status(404)
-            throw new Error('events not found')
+            throw new Error('event not found')
         }
     
-        res.status(200).json( events )
+        res.status(200).json( event )
     }
 })
-const updateevents = asyncHandler (async (req, res) => {
+const updateEvent = asyncHandler (async (req, res) => {
     const {name} = req.body
 
     if (!name) {
         res.status(400)
-        throw new Error('missing events')
+        throw new Error('missing event')
     }
-    const eventsExists = await Events.findOne({name})
+    const eventExists = await Events.findOne({name})
 
-    if(eventsExists) {
+    if(eventExists) {
         res.status(400)
         throw new Error('events already exists')
     }
-    const updatedevents = await Events.findByIdAndUpdate(req.params.id, req.body)
+    const updatedEvent = await Events.findByIdAndUpdate(req.params.id, req.body)
 
-    if (updatedevents){
-        res.status(201).json(updatedevents)
+    if (updatedEvent){
+        res.status(201).json(updatedEvent)
     } else {
         res.status(400)
         throw new Error('invalid data')
     }
 
 })   
-const deleteevents = asyncHandler (async (req, res) => {
+const deleteEvent = asyncHandler (async (req, res) => {
 
-    const events = await Events.findById(req.params.id)
+    const event = await Events.findById(req.params.id)
 
-    if (!events){
+    if (!event){
         res.status(404)
-        throw new Error('events not found')
+        throw new Error('event not found')
     }
 
-    await events.remove()
+    await event.remove()
 
     res.status(200).json({ success: true })
 }) 
 
-module.exports = {addevents, getEvents, getevents, updateevents, deleteevents}
+module.exports = {addEvent, getEvent, getEvents, updateEvent, deleteEvent}

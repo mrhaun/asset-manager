@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const eventsSchema = mongoose.Schema({
 
-    status: {
+    name: {
         type: String,      
     },
     timestamp: {
