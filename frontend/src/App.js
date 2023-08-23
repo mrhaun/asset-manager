@@ -37,6 +37,7 @@ import CreateStatus from './pages/CreateStatus'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import AssetDetails from './pages/AssetDetails'
+import UpdateAssetStatus from './pages/UpdateAssetStatus'
 
 
 function App() {
@@ -133,6 +134,9 @@ function App() {
             <Route path='/editasset/:assetId' element={<PrivateRoute />} >            
               <Route path='/editasset/:assetId' element={<EditAsset />} />            
             </Route>
+            <Route path='/updateassetstatus/:assetId' element={<PrivateRoute />} >            
+              <Route path='/updateassetstatus/:assetId' element={<UpdateAssetStatus />} />            
+            </Route>            
             <Route path='/notfound' element={<NotFound />} />
             <Route path='/about' element={<About />} />                                    
             <Route path='/*' element={<NotFound />} />                                    

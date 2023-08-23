@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
-import {create, reset} from '../features/employees/employeeSlice'
+import {createEmployee, reset} from '../features/employees/employeeSlice'
 import Spinner from '../components/Spinner';  
 import BackButton from '../components/BackButton';
 
@@ -53,7 +53,7 @@ function AddEmployee() {
       location 
     }
 
-    dispatch(create(employeeData))
+    dispatch(createEmployee(employeeData))
 
   }
 

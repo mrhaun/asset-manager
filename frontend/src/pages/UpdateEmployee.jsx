@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
 import {updateEmployee, getEmployee, deleteEmployee, reset} from '../features/employees/employeeSlice'
@@ -107,7 +107,7 @@ function UpdateEmployee() {
       <label className="label" htmlFor="email">
        Email
       </label>
-      <input name="email" value={email} onChange={(e) => setemail(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="email" type="text"/>
+      <input name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="email" type="text"/>
       <p className="text-red text-xs italic">Please fill out this field.</p>   
     </div>            
   </div>
