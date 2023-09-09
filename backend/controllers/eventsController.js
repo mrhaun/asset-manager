@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler')
 
 
 
-const Events = require('../models/eventsModel')
+const Events = require('../models/eventModel')
 
 
 const addEvent = asyncHandler (async (req, res) => {

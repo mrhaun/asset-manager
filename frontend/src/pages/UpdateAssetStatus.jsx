@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
-import {updateAsset, getAsset, deleteAsset, reset} from '../features/assets/assetSlice'
+import {updateStatus, getAsset, reset} from '../features/assets/assetSlice'
 import Spinner from '../components/Spinner';  
-import BackButton from '../components/BackButton';
-
-import StatusOption from '../components/StatusOption';
-
+import { FaArrowCircleLeft } from "react-icons/fa"
+import { Link } from "react-router-dom"
 import SiteOption from '../components/SiteOption';
 import DepartmentOption from '../components/DepartmentOption';
 import LocationOption from '../components/LocationOption';
@@ -15,11 +13,10 @@ import EmployeeOption from '../components/EmployeeOption';
 
 function UpdateAssetStatus() {
 
-  const [status, setStatus] = useState('') 
+  const [newstatus, setNewStatus] = useState('') 
   const [employeeName, setEmployeeName] = useState('')
-  const [checkOutPerson, setCheckOutPerson] = useState('')
-  const [checkOutSite, setCheckOutSite] = useState('')
-  const [checkInLocation, setCheckInLocation] = useState('')
+  const [checkOutTo, setcheckOutTo] = useState(true)
+  const [checkInLocation, setCheckInLocation] = useState(false)
 
   
   
@@ -38,16 +35,17 @@ function UpdateAssetStatus() {
       toast.error(message)
     } else {
       dispatch(getAsset(assetId))  
-      setStatus(asset.status)
+
       setSite(asset.site)
       setDepartment(asset.department)
       setLocation(asset.location)
+      setNewStatus ((asset.status === 'available') ? 'Check Out' : 'Check In')
 
     }  
     return () => {
       if(updateComplete){
         dispatch(reset())
-        navigate('/assetlist')             
+        navigate(`/assetdetails/${assetId}`)             
       }
       if(isSuccess) {
         dispatch(reset())
@@ -60,30 +58,19 @@ function UpdateAssetStatus() {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    const assetData ={
-
+    const eventData ={       
       site,
       department,
-      location 
+      location,
+      newstatus,
+      employeeName            
     }
 
-    dispatch(updateAsset({assetId,assetData}))
+    dispatch(updateStatus({assetId,eventData}))
+    
 
   }
-  const handleDeleteAsset = (e) => {
-    e.preventDefault()
 
-
-    dispatch(deleteAsset(assetId))
-    if(isError){
-        toast.error(message)
-      }
-    if (isSuccess){
-        dispatch(reset())
-        navigate('/assetlist')    
-      }
-
-  }  
 
   if (isLoading) {
     return <Spinner />
@@ -95,7 +82,9 @@ function UpdateAssetStatus() {
 
 
 <div className=" shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-  <BackButton url='/assetlist' />
+<Link to={`/assetdetails/${assetId}`} className='btn btn-reverse btn-back'>
+      <FaArrowCircleLeft />Back
+  </Link>
 <form onSubmit={onSubmit}>
   <div className="-mx-3 md:flex mb-6">
     <div className="md:w-1/2 px-3">
@@ -103,29 +92,31 @@ function UpdateAssetStatus() {
             Status
         </label>
         <div className="relative">
-            <select name="status" value={status} onChange={(e) => setStatus(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="status">
-            <StatusOption/>
+            <select name="newstatus" value={newstatus} onChange={(e) => setNewStatus(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="status">
+            <option>Check Out</option>
+            <option>Check In</option>
+            <option>Dispose</option>                        
             </select>
-            <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-            <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
         </div>
     </div>
 
-    {status == 'Check Out' ? null
+    {newstatus == 'Check Out' ? null
 
 
       : (<>
 
         <div className="form-control">
-          <label className="label cursor-pointer">
+        <label className="label"  htmlFor="employee">
+          
+        </label>
+        <label className="label cursor-pointer">
             <span className="label-text">Person</span> 
-            <input type="checkbox" name="checkOutPerson" value={checkOutPerson} onChange={(e) => setCheckOutPerson(e.target.value)} className="checkbox" checked />
+            <input type="checkbox" name="checkoutto" value={checkOutTo} onChange={(e) => setcheckOutTo(e.target.value)} className="toggle"/>
             <span className="label-text">Site</span>
-            <input type="checkbox" name="checkOutSite" value={checkOutSite} onChange={(e) => setCheckOutSite(e.target.value)} className="checkbox" checked />
           </label>
+
         </div>
-        {checkOutPerson ? null
+        {checkOutTo ? null
 
 
         : (<>        
@@ -137,9 +128,6 @@ function UpdateAssetStatus() {
                 <select name="employee" value={employeeName} onChange={(e) => setEmployeeName(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="employee">
                 <EmployeeOption/>
                 </select>
-                <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                </div>
             </div>
         </div>
         <div className="md:w-1/2 px-3">
@@ -150,9 +138,6 @@ function UpdateAssetStatus() {
             <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
               <SiteOption/>
             </select>
-            <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
           </div>
         </div>
         <div className="md:w-1/2 px-3">
@@ -163,9 +148,6 @@ function UpdateAssetStatus() {
             <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
               <DepartmentOption/>
             </select>
-            <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
           </div>
         </div>
         <div className="md:w-1/2 px-3">
@@ -176,14 +158,11 @@ function UpdateAssetStatus() {
             <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
               <LocationOption/>
             </select>
-            <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
           </div>
         </div>
         </>
       ) }
-      {checkOutSite ? null
+      {checkOutTo ? null
 
 
       : (<>       
@@ -195,9 +174,6 @@ function UpdateAssetStatus() {
             <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
               <SiteOption/>
             </select>
-            <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
           </div>
         </div>
         <div className="md:w-1/2 px-3">
@@ -208,9 +184,6 @@ function UpdateAssetStatus() {
             <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
               <DepartmentOption/>
             </select>
-            <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
           </div>
         </div>
         <div className="md:w-1/2 px-3">
@@ -221,9 +194,6 @@ function UpdateAssetStatus() {
             <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
               <LocationOption/>
             </select>
-            <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
           </div>
         </div>
         </>
@@ -231,13 +201,13 @@ function UpdateAssetStatus() {
     </>
     ) }  
       
-    {status == 'Check In' ? null
+    {newstatus == 'Check In' ? null
 
 
     : (<>
         <div className="form-control">
           <label className="label cursor-pointer">
-            <span className="label-text">Check back in to the same Location</span> 
+            <span className="label-text">Check back in to the same Location?</span> 
             <input type="checkbox" name="checkInLocation" value={checkInLocation} onChange={(e) => setCheckInLocation(e.target.value)} className="toggle" checked />
           </label>
         </div>
@@ -253,9 +223,6 @@ function UpdateAssetStatus() {
               <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
                 <SiteOption/>
               </select>
-              <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-              </div>
             </div>
           </div>
           <div className="md:w-1/2 px-3">
@@ -266,9 +233,6 @@ function UpdateAssetStatus() {
               <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
                 <DepartmentOption/>
               </select>
-              <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-              </div>
             </div>
           </div>
           <div className="md:w-1/2 px-3">
@@ -279,9 +243,6 @@ function UpdateAssetStatus() {
               <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
                 <LocationOption/>
               </select>
-              <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-              </div>
             </div>
           </div>
           </>

@@ -50,11 +50,7 @@ function Settings() {
   <div className="relative py-6">
     <Link to={'/employees'} className='btn btn-primary'>
           Employees</Link>
-  </div>  
-  <div className="relative py-6">
-    <Link to={'/status'} className='btn btn-primary'>
-          Status</Link>
-  </div>            
+  </div>             
 </div>
   )
 }

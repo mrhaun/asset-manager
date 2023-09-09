@@ -87,7 +87,7 @@ export const employeeSlice = createSlice({
     name: 'employee',
     initialState,
     reducers: {
-        reset: (state) => initialState,
+        reset: (state) => initialState, 
         
     },
     extraReducers: (builder) => {

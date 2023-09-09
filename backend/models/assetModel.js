@@ -44,7 +44,16 @@ const assetSchema = mongoose.Schema({
     },
     location: {
         type: String,
-    },                    
+    },
+    status: {
+        type: String,
+    },
+    employeename: {
+        type: String,      
+    },    
+    employeeId: {
+        type: String,        
+    }
 })
 
 module.exports = mongoose.model('Asset', assetSchema)

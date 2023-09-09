@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler')
 
 
 const Asset = require('../models/assetModel')
-
+const Event = require('../models/eventModel')
 
 const createAsset = asyncHandler (async (req, res) => {
     const {assettag} = req.body
@@ -105,5 +105,38 @@ const searchAsset = asyncHandler (async (req, res) => {
     }
 
 })
+const updateStatus = asyncHandler (async (req, res) => {
+    const {status,employeeName,site,department,location} = req.body
 
-module.exports = {createAsset, searchAsset, getAsset, updateAsset, deleteAsset}
+    const assetId = req.params.id
+    const assetData ={
+        assetId,
+        site,
+        department,
+        location,
+        status,
+        employeeName                       
+      }
+
+    const updatedAsset = await Asset.findByIdAndUpdate(req.params.id, req.body)
+
+    if (updatedAsset){
+        res.status(201).json(updatedAsset)
+        const event = await Event.create(assetData)
+
+        if (event){
+            res.status(201).json({
+                event
+            })
+        } else {
+            res.status(400)
+            throw new Error('Invalid event data')
+        }
+    } else {
+        res.status(400)
+        throw new Error('Invalid asset data')
+    }
+
+})
+
+module.exports = {createAsset, searchAsset, getAsset, updateAsset, updateStatus, deleteAsset}

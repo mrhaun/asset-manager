@@ -17,7 +17,7 @@ function AssetItem({asset}) {
     </tbody>
 
     </>
-  )
+  ) 
 }
 
 export default AssetItem

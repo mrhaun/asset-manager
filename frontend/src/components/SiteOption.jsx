@@ -24,7 +24,7 @@ function SiteOption() {
       <>
      
      {sites.map(site => (
-       <option key={site._id}>{site.name}</option>
+       <option key={site._id} value={site.name+1}>{site.name}</option>
       ))}  
   
       </>

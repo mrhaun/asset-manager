@@ -15,8 +15,6 @@ import LocationOption from '../components/LocationOption';
 function AddAsset() {
 
   const [assettag, setAssettag] = useState('')
-  const [category, setCategory] = useState('')
-  const [brand, setBrand] = useState('') 
   const [model, setModel] = useState('')
   const [description, setDescription] = useState('')
   const [serialnumber, setSerialnumber] = useState('')  
@@ -25,14 +23,12 @@ function AddAsset() {
   const [estimatedvalue, setEstimatedvalue] = useState('')
   const [warrantystartdate, setwarrantystartdate] = useState('')  
   const [warrantyenddate, setwarrantyenddate] = useState('')
-  const [site, setSite] = useState('')
-  const [department, setDepartment] = useState('')
-  const [location, setLocation] = useState('')
+
 
 
   const dispatch = useDispatch()
   const navigate = useNavigate()    
-  const {assets, asset, isError, isSuccess, isLoading, message} = useSelector((state) => state.asset)
+  const {isError, isSuccess, isLoading, message} = useSelector((state) => state.asset)
 
   useEffect(() => {
 
@@ -52,10 +48,12 @@ function AddAsset() {
   const onSubmit = (e) => {
     e.preventDefault()
 
+
+
     const assetData ={
       assettag,
-      category,
-      brand,
+      category: e.target.category.value,
+      brand: e.target.brand.value,
       model,
       description,
       serialnumber,
@@ -64,9 +62,9 @@ function AddAsset() {
       estimatedvalue,
       warrantystartdate,
       warrantyenddate,
-      site,
-      department,
-      location 
+      site: e.target.site.value,
+      department: e.target.department.value,
+      location: e.target.location.value 
     }
 
     dispatch(create(assetData))
@@ -95,12 +93,9 @@ function AddAsset() {
         Category
       </label>
       <div className="relative">
-        <select name="category" value={category} onChange={(e) => setCategory(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="category">
+        <select name="category"  className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="category">
           <CategoryOption/>
         </select>
-        <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
       </div>
     </div>
     <div className="md:w-1/2 px-3">
@@ -108,12 +103,9 @@ function AddAsset() {
         Brand
       </label>
       <div className="relative">
-        <select name="brand" value={brand} onChange={(e) => setBrand(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="brand">
+        <select name="brand" className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="brand">
           <BrandOption/>
         </select>
-        <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
       </div>
     </div>
     <div className="md:w-1/2 px-3">
@@ -177,12 +169,9 @@ function AddAsset() {
         Site
       </label>
       <div className="relative">
-        <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
+        <select name="site" className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
           <SiteOption/>
         </select>
-        <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
       </div>
     </div>
     <div className="md:w-1/2 px-3">
@@ -190,12 +179,9 @@ function AddAsset() {
         Department
       </label>
       <div className="relative">
-        <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
+        <select name="department" className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
           <DepartmentOption/>
         </select>
-        <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
       </div>
     </div>
     <div className="md:w-1/2 px-3">
@@ -203,12 +189,9 @@ function AddAsset() {
         Location
       </label>
       <div className="relative">
-        <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
+        <select name="location" className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
           <LocationOption/>
         </select>
-        <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
       </div>
     </div>
   </div>

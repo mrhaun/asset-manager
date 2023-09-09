@@ -3,7 +3,8 @@ const router = express.Router()
 const { createAsset, 
         searchAsset, 
         getAsset, 
-        updateAsset, 
+        updateAsset,
+        updateStatus, 
         deleteAsset,
     
       } = require('../controllers/assetController')
@@ -48,14 +49,6 @@ const {
     
       } = require('../controllers/locationController')
       const { 
-        getStatus,
-        updateStatus,
-        deleteStatus,
-        getStatuses,
-        addStatus
-    
-      } = require('../controllers/statusController')
-      const { 
         getEvent,
         updateEvent,
         deleteEvent,
@@ -98,9 +91,7 @@ router.route('/locations/:id').get(protect, getLocation).put(protect, updateLoca
 router.route('/locations').post(protect, addLocation)
 router.route('/locations/search').post(protect, getLocations)
 
-router.route('/status/:id').get(protect, getStatus).put(protect, updateStatus).delete(protect, deleteStatus)
-router.route('/status').post(protect, addStatus)
-router.route('/status/search').post(protect, getStatuses)
+router.route('/status').post(protect, updateStatus)
 
 router.route('/events/:id').get(protect, getEvents).put(protect, updateEvent).delete(protect, deleteEvent)
 router.route('/events').post(protect, addEvent)

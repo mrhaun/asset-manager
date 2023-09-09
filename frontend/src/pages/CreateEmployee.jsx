@@ -12,12 +12,9 @@ import LocationOption from '../components/LocationOption';
 
 function AddEmployee() {
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [firstname, setFirstName] = useState('')
+  const [lastname, setLastName] = useState('')
   const [email, setEmail] = useState('') 
-  const [site, setSite] = useState('')
-  const [department, setDepartment] = useState('')
-  const [location, setLocation] = useState('')
 
 
   const dispatch = useDispatch()
@@ -37,7 +34,7 @@ function AddEmployee() {
       if(isSuccess) {
         dispatch(reset())
       }
-    } 
+    }  
   }, [dispatch, isSuccess, isError, updateComplete])
 
 
@@ -45,12 +42,12 @@ function AddEmployee() {
     e.preventDefault()
 
     const employeeData ={
-      firstName,
-      lastName,
+      firstname,
+      lastname,
       email,
-      site,
-      department,
-      location 
+      site: e.target.site.value,
+      department: e.target.department.value,
+      location: e.target.location.value 
     }
 
     dispatch(createEmployee(employeeData))
@@ -71,13 +68,13 @@ function AddEmployee() {
     <label className="label" htmlFor="firstName">
         First Name
       </label>
-      <input name="firstname" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="firstname" type="text" /> 
+      <input name="firstname" value={firstname} onChange={(e) => setFirstName(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="firstname" type="text" /> 
     </div>
     <div className="md:w-1/2 px-3">
       <label className="label"  htmlFor="category">
         Last Name
       </label>
-      <input name="lastname" value={lastName} onChange={(e) => setLastName(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="lastname" type="text"/>
+      <input name="lastname" value={lastname} onChange={(e) => setLastName(e.target.value)} className="appearance-none block w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4" id="lastname" type="text"/>
     </div> 
     <div className="md:w-1/2 px-3">
       <label className="label" htmlFor="email">
@@ -93,12 +90,9 @@ function AddEmployee() {
         Site
       </label>
       <div className="relative">
-        <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
+        <select name="site" className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
           <SiteOption/>
         </select>
-        <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
       </div>
     </div>
     <div className="md:w-1/2 px-3">
@@ -106,12 +100,9 @@ function AddEmployee() {
         Department
       </label>
       <div className="relative">
-        <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
+        <select name="department" className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
           <DepartmentOption/>
         </select>
-        <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
       </div>
     </div>
     <div className="md:w-1/2 px-3">
@@ -119,12 +110,9 @@ function AddEmployee() {
         Location
       </label>
       <div className="relative">
-        <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
+        <select name="location" className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
           <LocationOption/>
         </select>
-        <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
       </div>
     </div>
   </div>

@@ -49,6 +49,17 @@ const update = async (assetData, assetId, token) => {
 
     return response.data
 }
+const updateStatus = async (eventData, assetId, token) => {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }    
+    const response = await axios.put(API_URL+'/status' + assetId, eventData, config)
+
+    return response.data
+}
 const remove = async (assetId, token) => {
 
     const config = {
@@ -67,6 +78,7 @@ const assetService = {
     getAsset,
     create,
     update,
+    updateStatus,
     remove
 
 }
