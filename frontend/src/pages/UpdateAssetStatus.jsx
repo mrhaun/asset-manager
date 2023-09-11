@@ -16,8 +16,7 @@ function UpdateAssetStatus() {
   const [newstatus, setNewStatus] = useState('') 
   const [employeeName, setEmployeeName] = useState('')
   const [checkOutTo, setcheckOutTo] = useState(true)
-  const [checkInLocation, setCheckInLocation] = useState(false)
-
+  
   
   
   const [site, setSite] = useState('')
@@ -39,7 +38,7 @@ function UpdateAssetStatus() {
       setSite(asset.site)
       setDepartment(asset.department)
       setLocation(asset.location)
-      setNewStatus ((asset.status === 'available') ? 'Check Out' : 'Check In')
+      setNewStatus ((asset.status === 'available') ? 'Check In' : 'Check Out')
 
     }  
     return () => {
@@ -75,6 +74,7 @@ function UpdateAssetStatus() {
   if (isLoading) {
     return <Spinner />
   }
+  console.log(checkOutTo)
 
 
   return (
@@ -99,122 +99,74 @@ function UpdateAssetStatus() {
             </select>
         </div>
     </div>
+  </div>  
 
-    {newstatus == 'Check Out' ? null
-
-
-      : (<>
-
-        <div className="form-control">
-        <label className="label"  htmlFor="employee">
-          
-        </label>
-        <label className="label cursor-pointer">
-            <span className="label-text">Person</span> 
-            <input type="checkbox" name="checkoutto" value={checkOutTo} onChange={(e) => setcheckOutTo(e.target.value)} className="toggle"/>
-            <span className="label-text">Site</span>
-          </label>
-
-        </div>
-        {checkOutTo ? null
-
-
-        : (<>        
-        <div className="md:w-1/2 px-3">
-            <label className="label"  htmlFor="employee">
-                Employee Name
-            </label>
-            <div className="relative">
-                <select name="employee" value={employeeName} onChange={(e) => setEmployeeName(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="employee">
-                <EmployeeOption/>
-                </select>
-            </div>
-        </div>
-        <div className="md:w-1/2 px-3">
-          <label className="label"  htmlFor="site">
-            Site
-          </label>
-          <div className="relative">
-            <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
-              <SiteOption/>
-            </select>
-          </div>
-        </div>
-        <div className="md:w-1/2 px-3">
-          <label className="label"  htmlFor="department">
-            Department
-          </label>
-          <div className="relative">
-            <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
-              <DepartmentOption/>
-            </select>
-          </div>
-        </div>
-        <div className="md:w-1/2 px-3">
-          <label className="label"  htmlFor="location">
-            Location
-          </label>
-          <div className="relative">
-            <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
-              <LocationOption/>
-            </select>
-          </div>
-        </div>
-        </>
-      ) }
-      {checkOutTo ? null
-
-
-      : (<>       
-        <div className="md:w-1/2 px-3">
-          <label className="label"  htmlFor="site">
-            Site
-          </label>
-          <div className="relative">
-            <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
-              <SiteOption/>
-            </select>
-          </div>
-        </div>
-        <div className="md:w-1/2 px-3">
-          <label className="label"  htmlFor="department">
-            Department
-          </label>
-          <div className="relative">
-            <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
-              <DepartmentOption/>
-            </select>
-          </div>
-        </div>
-        <div className="md:w-1/2 px-3">
-          <label className="label"  htmlFor="location">
-            Location
-          </label>
-          <div className="relative">
-            <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
-              <LocationOption/>
-            </select>
-          </div>
-        </div>
-        </>
-      ) }
-    </>
-    ) }  
-      
-    {newstatus == 'Check In' ? null
-
-
-    : (<>
-        <div className="form-control">
+    {newstatus == 'Check Out' ? (<>
+      <div className="-mx-2 md:flex mb-3">
+        <div className="md:w-1/6 px-3">
           <label className="label cursor-pointer">
-            <span className="label-text">Check back in to the same Location?</span> 
-            <input type="checkbox" name="checkInLocation" value={checkInLocation} onChange={(e) => setCheckInLocation(e.target.value)} className="toggle" checked />
-          </label>
+            <span className="label-text">Check Out To: </span>
+          </label>                                             
+          <label className="label cursor-pointer">
+            <span className="label-text">Person</span>
+            <input type="radio"  name="checkoutto" value={checkOutTo} onChange={(e) => setcheckOutTo(e.target.value)} className="radio radio" checked />
+            </label>                    
+          <label className="label cursor-pointer">
+            <span className="label-text">Site</span>                        
+            <input type="radio" name="checkoutto" value={checkOutTo} onChange={(e) => setcheckOutTo(e.target.value)} className="radio radio"/>
+            </label>
         </div>
-        {checkInLocation ? null
+      </div>
 
+        
+        {checkOutTo ? (<>
+        <div className="-mx-3 md:flex mb-6">          
+            <div className="md:w-1/2 px-3">
+              <label className="label"  htmlFor="employee">
+                  Employee Name
+              </label>
+              <div className="relative">
+                  <select name="employee" value={employeeName} onChange={(e) => setEmployeeName(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="employee">
+                  <EmployeeOption/>
+                  </select>
+              </div>
+            </div>
+            <div className="md:w-1/2 px-3">
+              <label className="label"  htmlFor="site">
+                Site
+              </label>
+              <div className="relative">
+                <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
+                  <SiteOption/>
+                </select>
+              </div>
+            </div>
+            <div className="md:w-1/2 px-3">
+              <label className="label"  htmlFor="department">
+                Department
+              </label>
+              <div className="relative">
+                <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
+                  <DepartmentOption/>
+                </select>
+              </div>
+            </div>
+            <div className="md:w-1/2 px-3">
+              <label className="label"  htmlFor="location">
+                Location
+              </label>
+              <div className="relative">
+                <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
+                  <LocationOption/>
+                </select>
+              </div>
+            </div>
+          </div>  
+        </>
 
-        : (<>            
+        ) :  (<>  
+
+        <div className="-mx-3 md:flex mb-6">
           <div className="md:w-1/2 px-3">
             <label className="label"  htmlFor="site">
               Site
@@ -245,17 +197,66 @@ function UpdateAssetStatus() {
               </select>
             </div>
           </div>
-          </>
-        ) }  
-      </>  
-      ) }    
+        </div>  
+        </>
+      ) }
+    </>
+    ): null}
+
+
+      
+    {newstatus === 'Check In' ? (<>
+
+      <div className="-mx-2 md:flex mb-3">
+        <div className="md:w-1/6 px-3">
+          <label className="label cursor-pointer">
+            <span className="label-text">Check In To: </span>
+          </label>           
+        </div>  
+      </div>  
+      <div className="-mx-3 md:flex mb-6">        
+          <div className="md:w-1/2 px-3">
+            <label className="label"  htmlFor="site">
+              Site
+            </label>
+            <div className="relative">
+              <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
+                <SiteOption/>
+              </select>
+            </div>
+          </div>
+          <div className="md:w-1/2 px-3">
+            <label className="label"  htmlFor="department">
+              Department
+            </label>
+            <div className="relative">
+              <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
+                <DepartmentOption/>
+              </select>
+            </div>
+          </div>
+          <div className="md:w-1/2 px-3">
+            <label className="label"  htmlFor="location">
+              Location
+            </label>
+            <div className="relative">
+              <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
+                <LocationOption/>
+              </select>
+            </div>
+          </div>
+      </div>
+      </>
+    )
+
+    : null}    
 
     <div className="form-control mt-6">
       <div className="relative">
         <button className="btn btn-primary">Update Asset Status</button>
       </div>
     </div>  
-  </div>    
+   
   </form>
 </div>
 
