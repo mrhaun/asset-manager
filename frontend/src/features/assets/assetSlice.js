@@ -74,7 +74,7 @@ export const updateStatus = createAsyncThunk('asset/updateStatus', async (assetD
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await assetService.updateStatus(assetData.assetevent,assetData.assetId, token)
+        return await assetService.updateStatus(assetData.eventData,assetData.assetId, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()

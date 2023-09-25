@@ -13,9 +13,9 @@ import EmployeeOption from '../components/EmployeeOption';
 
 function UpdateAssetStatus() {
 
-  const [newstatus, setNewStatus] = useState('') 
+  const [newstatus, setNewStatus] = useState('Check Out') 
   const [employeeName, setEmployeeName] = useState('')
-  const [checkOutTo, setcheckOutTo] = useState(true)
+  const [checkOutTo, setCheckOutTo] = useState('Person')
   
   
   
@@ -34,18 +34,16 @@ function UpdateAssetStatus() {
       toast.error(message)
     } else {
       dispatch(getAsset(assetId))  
-
       setSite(asset.site)
       setDepartment(asset.department)
       setLocation(asset.location)
       setNewStatus ((asset.status === 'available') ? 'Check In' : 'Check Out')
-
     }  
+    if(updateComplete){
+      dispatch(reset())
+      navigate(`/assetdetails/${assetId}`)             
+    }    
     return () => {
-      if(updateComplete){
-        dispatch(reset())
-        navigate(`/assetdetails/${assetId}`)             
-      }
       if(isSuccess) {
         dispatch(reset())
       }
@@ -61,8 +59,8 @@ function UpdateAssetStatus() {
       site,
       department,
       location,
-      newstatus,
-      employeeName            
+      status: newstatus,
+      employeename: employeeName            
     }
 
     dispatch(updateStatus({assetId,eventData}))
@@ -74,7 +72,6 @@ function UpdateAssetStatus() {
   if (isLoading) {
     return <Spinner />
   }
-  console.log(checkOutTo)
 
 
   return (
@@ -103,23 +100,21 @@ function UpdateAssetStatus() {
 
     {newstatus == 'Check Out' ? (<>
       <div className="-mx-2 md:flex mb-3">
-        <div className="md:w-1/6 px-3">
-          <label className="label cursor-pointer">
-            <span className="label-text">Check Out To: </span>
-          </label>                                             
-          <label className="label cursor-pointer">
-            <span className="label-text">Person</span>
-            <input type="radio"  name="checkoutto" value={checkOutTo} onChange={(e) => setcheckOutTo(e.target.value)} className="radio radio" checked />
-            </label>                    
-          <label className="label cursor-pointer">
-            <span className="label-text">Site</span>                        
-            <input type="radio" name="checkoutto" value={checkOutTo} onChange={(e) => setcheckOutTo(e.target.value)} className="radio radio"/>
-            </label>
-        </div>
+        <div className="md:w-1/2 px-3">
+          <label className="label"  htmlFor="checkoutto">
+            Check Out To: 
+          </label>
+          <div className="relative">
+              <select name="checkoutto" value={checkOutTo} onChange={(e) => setCheckOutTo(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="checkOutTo">
+              <option>Person</option>
+              <option>Site</option>
+              </select>
+          </div>
+        </div>          
       </div>
 
         
-        {checkOutTo ? (<>
+        {checkOutTo == 'Person' ? (<>
         <div className="-mx-3 md:flex mb-6">          
             <div className="md:w-1/2 px-3">
               <label className="label"  htmlFor="employee">

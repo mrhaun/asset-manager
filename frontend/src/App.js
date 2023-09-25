@@ -30,7 +30,7 @@ import CreateLocation from './pages/CreateLocation'
 import Employees from './pages/Employees'
 import UpdateEmployee from './pages/UpdateEmployee'
 import CreateEmployee from './pages/CreateEmployee'
-
+import EmployeeDetails from './pages/EmployeeDetails'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -112,6 +112,9 @@ function App() {
             <Route path='/createemployee' element={<PrivateRoute />} >             
             <Route path='/createemployee' element={<CreateEmployee />} />                                    
             </Route>                         
+            <Route path='/employee/:employeeId' element={<PrivateRoute />} >             
+            <Route path='/employee/:employeeId' element={<EmployeeDetails />} />                                    
+            </Route> 
 
             <Route path='/assetlist' element={<AssetList />} />
             <Route path='/addasset' element={<PrivateRoute />} >

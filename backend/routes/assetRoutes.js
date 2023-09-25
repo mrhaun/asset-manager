@@ -91,7 +91,7 @@ router.route('/locations/:id').get(protect, getLocation).put(protect, updateLoca
 router.route('/locations').post(protect, addLocation)
 router.route('/locations/search').post(protect, getLocations)
 
-router.route('/status').post(protect, updateStatus)
+router.route('/status/:id').put(protect, updateStatus)
 
 router.route('/events/:id').get(protect, getEvents).put(protect, updateEvent).delete(protect, deleteEvent)
 router.route('/events').post(protect, addEvent)

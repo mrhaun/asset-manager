@@ -88,7 +88,7 @@ function UpdateEmployee() {
   return (
 
 <div className=" shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-  <BackButton url='/' />
+  <BackButton url='/employees' />
 <form onSubmit={onSubmit}>
   <div className="-mx-3 md:flex mb-6">
     <div className="md:w-1/2 px-3 mb-6 md:mb-0">      
@@ -154,7 +154,7 @@ function UpdateEmployee() {
   </div>
   <div className="form-control mt-6">
       <div className="relative">
-      <button className="btn btn-primary">Create Employee</button>
+      <button className="btn btn-primary">Update Employee</button>
     </div>
     </div>    
   </form>

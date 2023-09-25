@@ -50,10 +50,7 @@ const assetSchema = mongoose.Schema({
     },
     employeename: {
         type: String,      
-    },    
-    employeeId: {
-        type: String,        
-    }
+    }    
 })
 
 module.exports = mongoose.model('Asset', assetSchema)

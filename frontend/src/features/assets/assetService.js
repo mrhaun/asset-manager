@@ -56,7 +56,7 @@ const updateStatus = async (eventData, assetId, token) => {
             Authorization: `Bearer ${token}`
         }
     }    
-    const response = await axios.put(API_URL+'/status' + assetId, eventData, config)
+    const response = await axios.put(API_URL+'/status/' + assetId, eventData, config)
 
     return response.data
 }

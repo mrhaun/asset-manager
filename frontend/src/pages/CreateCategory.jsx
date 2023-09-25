@@ -19,7 +19,7 @@ function CreateCategory() {
       toast.error(message)
     } 
     if(updateComplete) {
-      toast.success('Asset Added')      
+      toast.success('Category Added')      
       dispatch(reset())      
       navigate('/categories') 
     }     

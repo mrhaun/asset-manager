@@ -14,7 +14,7 @@ function UpdateDepartment() {
     const dispatch = useDispatch() 
     const navigate = useNavigate()        
     const {departmentId} = useParams()
-    
+     
     useEffect(() => {
       if(isError){
         toast.error(message)

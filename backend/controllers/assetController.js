@@ -106,16 +106,17 @@ const searchAsset = asyncHandler (async (req, res) => {
 
 })
 const updateStatus = asyncHandler (async (req, res) => {
-    const {status,employeeName,site,department,location} = req.body
-
+    const {status,employeename,site,department,location} = req.body
+    const time = Date.now()
     const assetId = req.params.id
     const assetData ={
         assetId,
+        status,
+        employeename,
         site,
         department,
         location,
-        status,
-        employeeName                       
+        timestamp: time                       
       }
 
     const updatedAsset = await Asset.findByIdAndUpdate(req.params.id, req.body)

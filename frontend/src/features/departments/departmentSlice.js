@@ -84,7 +84,7 @@ export const deleteDepartment = createAsyncThunk('departments/deleteDepartment',
 })
 
 export const departmentSlice = createSlice({
-    name: 'departments',
+    name: 'department',
     initialState,
     reducers: {
         reset: (state) => initialState,
@@ -125,7 +125,7 @@ export const departmentSlice = createSlice({
             .addCase(getDepartment.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.Department = action.payload
+                state.department = action.payload
             })
             .addCase(getDepartment.rejected, (state, action) => {
                 state.isLoading = false

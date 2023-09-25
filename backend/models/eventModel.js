@@ -10,10 +10,7 @@ const eventSchema = mongoose.Schema({
     },        
     employeename: {
         type: String,      
-    },
-    employeeId: {
-        type: String,      
-    },    
+    },   
     site: {
         type: String,
     },
