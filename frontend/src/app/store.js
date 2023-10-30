@@ -7,6 +7,7 @@ import siteReducer from '../features/sites/siteSlice'
 import locationReducer from '../features/locations/locationSlice'
 import departmentReducer from '../features/departments/departmentSlice'
 import employeeReducer from '../features/employees/employeeSlice'
+import eventReducer from '../features/events/eventsSlice'
 
 export const store = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
         site: siteReducer,
         department: departmentReducer,
         location: locationReducer,
-        employee: employeeReducer
+        employee: employeeReducer,
+        event: eventReducer
     },
 })

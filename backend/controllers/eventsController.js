@@ -34,15 +34,17 @@ const addEvent = asyncHandler (async (req, res) => {
 
 })
 const getEvents = asyncHandler (async (req, res) => {
-    const eventsList = await Events.find({})
+    if (req.params.id){
+        const eventID =req.params.id
+        const eventsList = await Events.find({eventID})
 
-    if (!eventsList){
-        res.status(404)
-        throw new Error('events not found')
-    } else {
-        
+        if (!eventsList){
+            res.status(404)
+            throw new Error('events not found')
+        }
+    
         res.status(200).json( eventsList )
-    }        
+    }
 })
 const getEvent = asyncHandler (async (req, res) => {
     if (req.params.id){

@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import {Link, useNavigate } from "react-router-dom";
-import {toast} from 'react-toastify'
+import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import {reset, search} from '../features/assets/assetSlice'
 import Spinner from '../components/Spinner';  
@@ -25,7 +23,7 @@ function AssetList() {
 
 return (
 
-<div className="overflow-x-auto">
+<div className="overflow-x-auto"> 
 <BackButton url='/' />
 <table className="table table-compact w-full">
     <thead>

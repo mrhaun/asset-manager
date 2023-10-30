@@ -31,6 +31,7 @@ import Employees from './pages/Employees'
 import UpdateEmployee from './pages/UpdateEmployee'
 import CreateEmployee from './pages/CreateEmployee'
 import EmployeeDetails from './pages/EmployeeDetails'
+import EventHistory from './pages/EventHistory'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -123,6 +124,9 @@ function App() {
             <Route path='/assetdetails/:assetId' element={<PrivateRoute />} >
               <Route path='/assetdetails/:assetId' element={<AssetDetails/>} />
             </Route>
+            <Route path='/eventhistory/:assetId' element={<PrivateRoute />} >
+              <Route path='/eventhistory/:assetId' element={<EventHistory/>} />
+            </Route>            
             <Route path='/editasset/:assetId' element={<PrivateRoute />} >            
               <Route path='/editasset/:assetId' element={<EditAsset />} />            
             </Route>

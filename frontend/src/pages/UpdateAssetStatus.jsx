@@ -37,7 +37,7 @@ function UpdateAssetStatus() {
       setSite(asset.site)
       setDepartment(asset.department)
       setLocation(asset.location)
-      setNewStatus ((asset.status === 'available') ? 'Check In' : 'Check Out')
+      setNewStatus ((asset.status === 'Available') ? 'Check In' : 'Check Out')
     }  
     if(updateComplete){
       dispatch(reset())
