@@ -37,7 +37,7 @@ function UpdateAssetStatus() {
       setSite(asset.site)
       setDepartment(asset.department)
       setLocation(asset.location)
-      setNewStatus ((asset.status === 'Available') ? 'Check In' : 'Check Out')
+      setNewStatus ((asset.status === 'Available') ? 'Check Out' : 'Check In')
     }  
     if(updateComplete){
       dispatch(reset())
@@ -60,7 +60,7 @@ function UpdateAssetStatus() {
       department,
       location,
       status: newstatus,
-      employeename: employeeName            
+      employeename: e.target.department.value           
     }
 
     dispatch(updateStatus({assetId,eventData}))

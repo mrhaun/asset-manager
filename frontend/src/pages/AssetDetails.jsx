@@ -84,10 +84,11 @@ function AssetDetails() {
     <div className="card w-96 bg-base-100 shadow-xl">
       <div className="card-body">
       <h2 className="card-title">Status:</h2>
-      <p>{asset.status == 'Check Out' ? 'Checked Out' : ''}</p>
-      <p>{asset.status == 'Check in' ? 'Checked in' : ''}</p>
-      <p>{asset.status == 'Dispose' ? 'Disposed' : ''}</p>      
-      <p>To:  {asset.employeename}</p>      
+      <p>{asset.status == 'Check Out' ? 'Checked Out To: ' : ''}</p>
+      <p>{asset.status == 'Check in' ? 'Checked in To: ' : ''}</p>
+      <p>{asset.status == 'Dispose' ? 'Disposed' : ''}</p>
+      <p>{asset.status == 'Available' ? 'Available' : ''}</p>            
+      <p>{asset.employeename}</p>      
       <Link to={`/updateassetstatus/${asset._id}`} className='btn btn-ghost btn-sm rounded-btn'>
         update status</Link>
    
