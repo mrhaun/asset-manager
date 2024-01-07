@@ -24,7 +24,7 @@ function BrandOption() {
       <>
      
      {brands.map(brand => (
-       <option key={brand._id}>{brand.name}</option>
+       <option value={brand._id} key={brand._id}>{brand.name}</option>
       ))}  
   
       </>

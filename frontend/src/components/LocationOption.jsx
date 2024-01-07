@@ -24,7 +24,7 @@ function LocationOption() {
       <>
      
      {locations.map(location => (
-       <option key={location._id}>{location.name}</option>
+       <option value={location._id} key={location._id}>{location.name}</option>
       ))}  
   
       </>

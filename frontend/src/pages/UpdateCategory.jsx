@@ -44,11 +44,11 @@ function UpdateCategory() {
    const handleUpdateCategory = (e) => {
     e.preventDefault()
 
-    const categoryData ={
+    const category ={
       name: updatedCategory
     }
 
-    dispatch(updateCategory({categoryData,categoryId}))
+    dispatch(updateCategory({category,categoryId}))
   }
   const handleDeleteCategory = (e) => {
     e.preventDefault()

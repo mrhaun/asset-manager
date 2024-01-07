@@ -24,7 +24,7 @@ function EmployeeOption() {
       <>
      
      {employees.map(employee => (
-       <option key={employee._id}>{employee.firstname} {employee.lastname}</option>
+       <option value={employee._id} key={employee._id}>{employee.firstname} {employee.lastname}</option>
       ))}  
   
       </>

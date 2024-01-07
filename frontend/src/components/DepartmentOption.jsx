@@ -24,7 +24,7 @@ function DepartmentOption() {
       <>
      
      {departments.map(department => (
-       <option key={department._id}>{department.name}</option>
+       <option value={department._id} key={department._id}>{department.name}</option>
       ))}  
   
       </>

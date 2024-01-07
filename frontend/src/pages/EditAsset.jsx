@@ -113,14 +113,17 @@ function EditAsset() {
 
 
   return (
-
-
-
-<div className=" shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-  <Link to={`/assetdetails/${assetId}`} className='btn btn-reverse btn-back'>
-      <FaArrowCircleLeft />Back
-  </Link>
+<div className=" shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">  
 <form onSubmit={onSubmit}>
+  <div className="form-control mt-6">
+    <div className="relative">
+      <Link to={`/assetdetails/${assetId}`} className='btn btn-reverse btn-back'>
+        <FaArrowCircleLeft />Back
+      </Link>
+    </div>
+  </div>    
+
+
   <div className="-mx-3 md:flex mb-6">
     <div className="md:w-1/2 px-3 mb-6 md:mb-0">      
     <label className="label" htmlFor="assettag">

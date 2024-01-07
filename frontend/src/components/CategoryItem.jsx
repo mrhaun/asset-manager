@@ -6,7 +6,7 @@ function CategoryItem({category}) {
     <>
    
         <tr>
-            <td translate="no" className="py-2 pr-2 font-mono font-medium text-xs leading-6 text-sky-500 whitespace-nowrap dark:text-sky-400">
+            <td>
                 <Link to={`/updatecategory/${category._id}`} >{category.name}</Link>
             </td>
         </tr>

@@ -24,7 +24,7 @@ function CategoryOption() {
       <>
      
      {categories.map(category => (
-       <option key={category._id}>{category.name}</option>
+       <option value={category._id} key={category._id}>{category.name}</option>
       ))}  
   
       </>

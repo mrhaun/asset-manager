@@ -56,7 +56,7 @@ function AddAsset() {
       brand: e.target.brand.value,
       model,
       description,
-      serialnumber: '2178123',
+      serialnumber,
       purchasedate,
       cost,
       estimatedvalue,

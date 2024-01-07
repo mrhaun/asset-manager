@@ -60,7 +60,7 @@ function UpdateAssetStatus() {
       department,
       location,
       status: newstatus,
-      employeename: e.target.department.value           
+      employeename: e.target.employee.value           
     }
 
     dispatch(updateStatus({assetId,eventData}))
