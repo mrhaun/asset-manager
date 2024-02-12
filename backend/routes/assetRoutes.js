@@ -67,8 +67,8 @@ const {
 
 const {protect} = require('../middleware/authMiddleware')
 
-router.route('/search').post(searchAsset)
-router.route('/').post(protect, createAsset)  
+router.route('/search').post(protect, searchAsset)
+router.route('/').post(protect, createAsset)   
 router.route('/:id').get(protect, getAsset).put(protect, updateAsset).delete(protect, deleteAsset)  
 
 router.route('/categories/:id').get(protect, getCategory).put(protect, updateCategory).delete(protect, deleteCategory)

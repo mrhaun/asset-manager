@@ -117,7 +117,9 @@ function App() {
             <Route path='/employee/:employeeId' element={<EmployeeDetails />} />                                    
             </Route> 
 
-            <Route path='/assetlist' element={<AssetList />} />
+            <Route path='/assetlist' element={<PrivateRoute />} >
+            <Route path='/assetlist' element={<AssetList/>} />
+            </Route>
             <Route path='/addasset' element={<PrivateRoute />} >
               <Route path='/addasset' element={<AddAsset/>} />
             </Route>

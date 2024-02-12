@@ -17,16 +17,21 @@ function AssetList() {
   const [site, setSite] = useState('')
   const [department, setDepartment] = useState('')
   const [location, setLocation] = useState('')
+  const [assetsPerPage, setAssetsPerPage] = useState(5)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)  
 
+  
   const {assets, isLoading, isSuccess} = useSelector((state) => state.asset) 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(search())    
+    dispatch(search())
+    setTotalPages(Math.ceil(assets.length / assetsPerPage))          
     return () => {
       if(isSuccess) {
         dispatch(reset())
       }
-    }
+    }    
   }, [dispatch, isSuccess])
 
   const onSubmit = (e) => {
@@ -42,8 +47,12 @@ function AssetList() {
     }
 
     dispatch(search({searchData}))
-
+    setTotalPages(Math.ceil(assets.length / assetsPerPage))
   }
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage)
+  }
+
   if (isLoading) {
     return <Spinner />
   } 
@@ -64,9 +73,10 @@ return (
     <label className="label" htmlFor="search">
         Search
       </label>
-      <input name="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="assettag" type="text" />
-      <p className="text-red text-xs italic">Please fill out this field.</p>    
+      <input name="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="assettag" type="text" />    
     </div>
+    </div>
+    <div className="-mx-3 md:flex mb-6">    
     <div className="md:w-1/2 px-3">
       <label className="label"  htmlFor="category">
         Category
@@ -118,6 +128,20 @@ return (
           </select>
         </div>
       </div>
+      <div className="md:w-1/2 px-3">
+        <label className="label"  htmlFor="assetsperpage">
+          Assets Per Page
+        </label>
+        <div className="relative">
+          <select name="assetsperpage" value={assetsPerPage} onChange={(e) => setAssetsPerPage(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="assetsperpage">
+            <option value='5' >20</option>
+            <option value='50' >50</option>
+            <option value='100' >100</option>
+            <option value='200' >200</option>
+            <option value='500' >500</option>                                                
+          </select>
+        </div>
+      </div>      
     </div>
     <div className="form-control mt-6">
       <div className="relative">
@@ -142,10 +166,27 @@ return (
         <th>details</th> 
       </tr>
     </thead> 
-    {assets.map(asset => (
-      <AssetItem key={asset._id} asset={asset} />
+    {assets
+      .slice((currentPage - 1) * assetsPerPage, currentPage * assetsPerPage)    
+      .map(asset => (
+        <AssetItem key={asset._id} asset={asset} />
     ))} 
 </table>  
+<div className="md:w-full px-6">
+  <button className="btn btn-primary"
+      disabled={currentPage === 1}
+      onClick={() => handlePageChange(currentPage - 1)}
+    >
+      Previous
+    </button>
+    <div className="relative">{`Page ${currentPage} of ${totalPages}`}</div>
+    <button  className="btn btn-primary"
+      disabled={currentPage === totalPages}
+      onClick={() => handlePageChange(currentPage + 1)}
+    >
+      Next
+    </button>
+    </div>
 </div>
 </>
   ) 
