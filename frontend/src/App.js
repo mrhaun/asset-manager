@@ -3,7 +3,6 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import PrivateRoute from './components/PrivateRoute'
 import Home from './pages/Home'
-import MeatSort from './pages/MeatSort'
 import NotFound from './pages/NotFound'
 import AssetList from './pages/AssetList'
 import About from './pages/About'
@@ -48,8 +47,7 @@ function App() {
 
         <main className='container mx-auto px-3 pb-12'>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/meatsort' element={<MeatSort />} />                        
+            <Route path='/' element={<Home />} />                  
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/settings' element={<PrivateRoute />} >             

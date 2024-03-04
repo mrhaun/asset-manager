@@ -147,23 +147,36 @@ const deleteAsset = asyncHandler (async (req, res) => {
     res.status(200).json({ success: true })
 })
 const searchAsset = asyncHandler (async (req, res) => {
-    if (req.body){
-        console.log(req.body)
-        const assets = await Asset.find(req.body)
+
+    const assetquery = req.body
+    console.log(assetquery)
+
+    if (assetquery.length > 0){ 
+
+        
+        const searchQuery = {
+
+            "category": { "$in": [assetquery.category, assetquery.search] },
+            "brand": { "$in": [assetquery.brand, assetquery.search] },
+            "site": { "$in": [assetquery.site, assetquery.search] },
+            "department": { "$in": [assetquery.department, assetquery.search] },
+            "location": { "$in": [assetquery.location, assetquery.search] }
+        }
+
+        const assets = await Asset.find(searchQuery)
+        if (!assets){
+            res.status(404)
+            throw new Error('asset not found')
+        }
+        res.status(200).json( assets )        
+
+    } else {
+        const assets = await Asset.find({})
         if (!assets){
             res.status(404)
             throw new Error('asset not found')
         }
         res.status(200).json( assets )
-    } else {
-        //const assets = await Categories.find({})
-        console.log(assets)
-        if (!assets){
-            res.status(404)
-            throw new Error('asset not found')
-        } else {
-            res.status(200).json( assets )
-        }        
 
     }
 

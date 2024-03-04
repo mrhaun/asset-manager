@@ -30,8 +30,7 @@ export const create = createAsyncThunk('asset/create', async (assetData, thunkAP
 export const search = createAsyncThunk('asset/search', async (assetData, thunkAPI) => {
 
     try {
-        const token = thunkAPI.getState().auth.user.token
-        console.log(token)         
+        const token = thunkAPI.getState().auth.user.token  
         return await assetService.search(assetData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)

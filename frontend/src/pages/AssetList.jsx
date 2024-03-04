@@ -12,7 +12,7 @@ import LocationOption from '../components/LocationOption';
 
 function AssetList() {
   const [searchTerm, setSearchTerm] = useState('') 
-  const [category, setCategory] = useState('Any')
+  const [category, setCategory] = useState('')
   const [brand, setBrand] = useState('') 
   const [site, setSite] = useState('')
   const [department, setDepartment] = useState('')
@@ -25,8 +25,8 @@ function AssetList() {
   const {assets, isLoading, isSuccess} = useSelector((state) => state.asset) 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(search())
-    setTotalPages(Math.ceil(assets.length / assetsPerPage))          
+
+    
     return () => {
       if(isSuccess) {
         dispatch(reset())
@@ -38,14 +38,14 @@ function AssetList() {
     e.preventDefault()
 
     const searchData ={
-      search,
+      searchTerm,
       category,
       brand,
       site,
       department,
       location 
     }
-
+    console.log(searchData)
     dispatch(search({searchData}))
     setTotalPages(Math.ceil(assets.length / assetsPerPage))
   }
@@ -70,7 +70,7 @@ return (
 
   <div className="-mx-3 md:flex mb-6">
     <div className="md:w-1/2 px-3 mb-6 md:mb-0">      
-    <label className="label" htmlFor="search">
+      <label className="label" htmlFor="search">
         Search
       </label>
       <input name="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="assettag" type="text" />    
@@ -82,7 +82,7 @@ return (
         Category
       </label>
       <div className="relative">
-        <select name="category" value={category} onChange={(e) => setCategory(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="category">
+        <select value={category} name="category" onChange={(e) => setCategory(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="category">
           <CategoryOption/>
         </select>
       </div>
