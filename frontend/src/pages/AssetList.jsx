@@ -35,7 +35,7 @@ function AssetList() {
   }, [dispatch, isSuccess])
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault() 
 
     const searchData ={
       searchTerm,
@@ -46,7 +46,7 @@ function AssetList() {
       location 
     }
     console.log(searchData)
-    dispatch(search({searchData}))
+    dispatch(search(searchData))
     setTotalPages(Math.ceil(assets.length / assetsPerPage))
   }
   const handlePageChange = (newPage) => {
@@ -68,14 +68,14 @@ return (
   </div>    
 
 
-  <div className="-mx-3 md:flex mb-6">
+  <div className="-mx-3 md:flex mb-12">
     <div className="md:w-1/2 px-3 mb-6 md:mb-0">      
       <label className="label" htmlFor="search">
         Search
       </label>
       <input name="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="assettag" type="text" />    
     </div>
-    </div>
+  </div>
     <div className="-mx-3 md:flex mb-6">    
     <div className="md:w-1/2 px-3">
       <label className="label"  htmlFor="category">

@@ -149,36 +149,35 @@ const deleteAsset = asyncHandler (async (req, res) => {
 const searchAsset = asyncHandler (async (req, res) => {
 
     const assetquery = req.body
+
     console.log(assetquery)
 
-    if (assetquery.length > 0){ 
-
         
-        const searchQuery = {
+    const searchQuery = {
 
-            "category": { "$in": [assetquery.category, assetquery.search] },
-            "brand": { "$in": [assetquery.brand, assetquery.search] },
-            "site": { "$in": [assetquery.site, assetquery.search] },
-            "department": { "$in": [assetquery.department, assetquery.search] },
-            "location": { "$in": [assetquery.location, assetquery.search] }
-        }
-
-        const assets = await Asset.find(searchQuery)
-        if (!assets){
-            res.status(404)
-            throw new Error('asset not found')
-        }
-        res.status(200).json( assets )        
-
-    } else {
-        const assets = await Asset.find({})
-        if (!assets){
-            res.status(404)
-            throw new Error('asset not found')
-        }
-        res.status(200).json( assets )
-
+        "category": { "$in": [assetquery.category, assetquery.searchTerm] },
+        "brand": { "$in": [assetquery.brand, assetquery.searchTerm] },
+        "site": { "$in": [assetquery.site, assetquery.searchTerm] },
+        "department": { "$in": [assetquery.department, assetquery.searchTerm] },
+        "location": { "$in": [assetquery.location, assetquery.searchTerm] }
     }
+
+    const assets = await Asset.find(searchQuery)
+    if (!assets){
+        res.status(404)
+        throw new Error('asset not found')
+    }
+    res.status(200).json( assets )        
+
+})
+const getallAssets = asyncHandler (async (req, res) => {
+
+    const assets = await Asset.find({})
+    if (!assets){
+        res.status(404)
+        throw new Error('asset not found')
+    }
+    res.status(200).json( assets )
 
 })
 const updateStatus = asyncHandler (async (req, res) => {
@@ -216,4 +215,4 @@ const updateStatus = asyncHandler (async (req, res) => {
 
 })
 
-module.exports = {createAsset, searchAsset, getAsset, updateAsset, updateStatus, deleteAsset}
+module.exports = {createAsset, searchAsset, getAsset, getallAssets, updateAsset, updateStatus, deleteAsset}
