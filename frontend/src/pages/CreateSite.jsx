@@ -61,7 +61,7 @@ return (
     <label className="label">
         Site
       </label>
-      <input name="newSite" value={newSite} onChange={(e) => setNewSite(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newSite" type="text" />
+      <input autoFocus name="newSite" value={newSite} onChange={(e) => setNewSite(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newSite" type="text" />
       <p className="text-red text-xs italic">Please fill out this field.</p>    
     </div>
     </div>

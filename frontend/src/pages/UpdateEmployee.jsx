@@ -55,7 +55,7 @@ function UpdateEmployee() {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    const employeeData ={
+    const employee ={
       firstName,
       lastName,
       email,
@@ -64,7 +64,7 @@ function UpdateEmployee() {
       location 
     }
 
-    dispatch(updateEmployee({employeeId,employeeData}))
+    dispatch(updateEmployee({employeeId,employee}))
   }
   const handleDeleteEmployee = (e) => {
     e.preventDefault()
@@ -95,7 +95,7 @@ function UpdateEmployee() {
     <label className="label" htmlFor="firstName">
         First Name
       </label>
-      <input name="firstname" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="firstname" type="text" /> 
+      <input autoFocus name="firstname" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="firstname" type="text" /> 
     </div>
     <div className="md:w-1/2 px-3">
       <label className="label"  htmlFor="category">

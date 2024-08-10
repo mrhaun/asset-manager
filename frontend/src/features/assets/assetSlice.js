@@ -12,7 +12,7 @@ const initialState = {
     updateComplete: false,    
     message: '',
 }
-
+ 
 
 export const create = createAsyncThunk('asset/create', async (assetData, thunkAPI) => {
 

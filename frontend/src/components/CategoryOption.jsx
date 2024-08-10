@@ -16,7 +16,7 @@ function CategoryOption() {
         dispatch(reset())
       }
     }
-  }, [dispatch, isSuccess, isError, message])
+  }, [])
 
 
 

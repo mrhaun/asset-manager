@@ -84,7 +84,7 @@ return (
     <label className="label">
         Category
       </label>
-      <input name="updatedcategory" value={updatedCategory} onChange={(e) => setUpdatedCategory(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedcategory" type="text" />
+      <input autoFocus name="updatedcategory" value={updatedCategory} onChange={(e) => setUpdatedCategory(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedcategory" type="text" />
     </div>
     </div>
     <div className="form-control mt-6">

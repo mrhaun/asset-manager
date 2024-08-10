@@ -44,10 +44,10 @@ function UpdateLocation() {
       const handleUpdateLocation = (e) => {
         e.preventDefault()
     
-        const locationData ={
+        const location ={
           name: updatedLocation
         }
-        dispatch(updateLocation({locationData,locationId}))
+        dispatch(updateLocation({location,locationId}))
       }
       const handleDeleteLocation = (e) => {
         e.preventDefault()
@@ -83,7 +83,7 @@ return (
     <label className="label">
         Location
       </label>
-      <input name="updatedLocation" value={updatedLocation} onChange={(e) => setUpdatedLocation(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedLocation" type="text" />
+      <input autoFocus name="updatedLocation" value={updatedLocation} onChange={(e) => setUpdatedLocation(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedLocation" type="text" />
     </div>
     </div>
     <div className="form-control mt-6">

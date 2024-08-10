@@ -28,6 +28,7 @@ function AssetList() {
 
     
     return () => {
+      dispatch(search())
       if(isSuccess) {
         dispatch(reset())
       }
@@ -39,11 +40,11 @@ function AssetList() {
 
     const searchData ={
       searchTerm,
-      category,
-      brand,
-      site,
-      department,
-      location 
+      category: e.target.category.value,
+      brand: e.target.brand.value,
+      site: e.target.site.value,
+      department: e.target.department.value,
+      location: e.target.location.value
     }
     console.log(searchData)
     dispatch(search(searchData))
@@ -82,7 +83,7 @@ return (
         Category
       </label>
       <div className="relative">
-        <select value={category} name="category" onChange={(e) => setCategory(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="category">
+        <select  disabled value={category} name="category" onChange={(e) => setCategory(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="category">
           <CategoryOption/>
         </select>
       </div>
@@ -92,7 +93,7 @@ return (
         Brand
       </label>
       <div className="relative">
-        <select name="brand" value={brand} onChange={(e) => setBrand(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="brand">
+        <select  disabled name="brand" value={brand} onChange={(e) => setBrand(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="brand">
           <BrandOption/>
         </select>
       </div>
@@ -103,7 +104,7 @@ return (
         Site
       </label>
       <div className="relative">
-        <select name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
+        <select disabled name="site" value={site} onChange={(e) => setSite(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="site">
           <SiteOption/>
         </select>
       </div>
@@ -113,7 +114,7 @@ return (
         Department
       </label>
       <div className="relative">
-        <select name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
+        <select disabled name="department" value={department} onChange={(e) => setDepartment(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="department">
           <DepartmentOption/>
         </select>
       </div>
@@ -123,7 +124,7 @@ return (
           Location
         </label>
         <div className="relative">
-          <select name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
+          <select disabled name="location" value={location} onChange={(e) => setLocation(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
             <LocationOption/>
           </select>
         </div>

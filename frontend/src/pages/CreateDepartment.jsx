@@ -60,7 +60,7 @@ return (
     <label className="label">
         Department
       </label>
-      <input name="newDepartment" value={newDepartment} onChange={(e) => setNewDepartment(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newDepartment" type="text" />
+      <input autoFocus name="newDepartment" value={newDepartment} onChange={(e) => setNewDepartment(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newDepartment" type="text" />
       <p className="text-red text-xs italic">Please fill out this field.</p>    
     </div>
     </div>

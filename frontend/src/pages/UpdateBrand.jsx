@@ -78,7 +78,7 @@ return (
     <label className="label">
         Brand
       </label>
-      <input name="updatedBrand" value={updatedBrand} onChange={(e) => setUpdatedBrand(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedBrand" type="text" />
+      <input autoFocus name="updatedBrand" value={updatedBrand} onChange={(e) => setUpdatedBrand(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedBrand" type="text" />
     </div>
     </div>
     <div className="form-control mt-6">

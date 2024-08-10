@@ -28,7 +28,7 @@ function AddAsset() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()    
-  const {isError, isSuccess, isLoading, message} = useSelector((state) => state.asset)
+  const {isError, isSuccess, isLoading, message, imagepath, imageurl} = useSelector((state) => state.asset)
 
   useEffect(() => {
 
@@ -44,6 +44,15 @@ function AddAsset() {
     dispatch(reset())
   }, [isError, isSuccess, message, navigate, dispatch])
 
+  function uploadImage(e) {
+
+    const imageform = new FormData()
+
+    imageform.append('image', e.target.files[0])  
+
+    //dispatch(addImage(imageform)) 
+
+}    
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -193,8 +202,14 @@ function AddAsset() {
         <select name="location" className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="location">
           <LocationOption/>
         </select>
-      </div>
+      </div>      
     </div>
+    <div className="md:w-1/2 px-3">
+      <label className="label" htmlFor="image">
+        Upload Image
+      </label>
+      <input type="file" id="image" name="image" className="file-input file-input-bordered w-full max-w-xs" onChange={e => uploadImage(e)}  accept=".jpg,.png,.jpeg,.gif" />
+    </div> 
   </div>
   <div className="form-control mt-6">
       <div className="relative">

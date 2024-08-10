@@ -150,24 +150,34 @@ const searchAsset = asyncHandler (async (req, res) => {
 
     const assetquery = req.body
 
-    console.log(assetquery)
+    if (!assetquery.searchTerm) {
+        const assets = await Asset.find({})
+        if (!assets){
+            res.status(404)
+            throw new Error('asset not found')
+        }
+        res.status(200).json( assets )        
+
+    } else { 
 
         
-    const searchQuery = {
+        const searchQuery = {
 
-        "category": { "$in": [assetquery.category, assetquery.searchTerm] },
-        "brand": { "$in": [assetquery.brand, assetquery.searchTerm] },
-        "site": { "$in": [assetquery.site, assetquery.searchTerm] },
-        "department": { "$in": [assetquery.department, assetquery.searchTerm] },
-        "location": { "$in": [assetquery.location, assetquery.searchTerm] }
-    }
+            "category": { "$in": [assetquery.category, assetquery.searchTerm] },
+            "brand": { "$in": [assetquery.brand, assetquery.searchTerm] },
+            "site": { "$in": [assetquery.site, assetquery.searchTerm] },
+            "department": { "$in": [assetquery.department, assetquery.searchTerm] },
+            "location": { "$in": [assetquery.location, assetquery.searchTerm] }
+        }
 
-    const assets = await Asset.find(searchQuery)
-    if (!assets){
-        res.status(404)
-        throw new Error('asset not found')
+        const assets = await Asset.find(searchQuery)
+        if (!assets){
+            res.status(404)
+            throw new Error('asset not found')
+        }
+        res.status(200).json( assets )        
+
     }
-    res.status(200).json( assets )        
 
 })
 const getallAssets = asyncHandler (async (req, res) => {

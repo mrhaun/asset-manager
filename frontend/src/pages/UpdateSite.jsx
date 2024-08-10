@@ -44,10 +44,10 @@ function UpdateSite() {
       const handleUpdateSite = (e) => {
         e.preventDefault()
     
-        const siteData ={
+        const site ={
           name: updatedSite
         }
-        dispatch(updateSite({siteData,siteId}))
+        dispatch(updateSite({site,siteId}))
       }
       const handleDeleteSite = (e) => {
         e.preventDefault()
@@ -83,7 +83,7 @@ return (
     <label className="label">
         Site
       </label>
-      <input name="updatedSite" value={updatedSite} onChange={(e) => setUpdatedSite(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedSite" type="text" />
+      <input autoFocus name="updatedSite" value={updatedSite} onChange={(e) => setUpdatedSite(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedSite" type="text" />
     </div>
     </div>
     <div className="form-control mt-6">

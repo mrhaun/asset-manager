@@ -61,7 +61,7 @@ return (
     <label className="label">
         Brand
       </label>
-      <input name="newBrand" value={newBrand} onChange={(e) => setNewBrand(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newBrand" type="text" />
+      <input autoFocus name="newBrand" value={newBrand} onChange={(e) => setNewBrand(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newBrand" type="text" />
       <p className="text-red text-xs italic">Please fill out this field.</p>    
     </div>
     </div>

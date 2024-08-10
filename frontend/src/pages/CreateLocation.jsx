@@ -60,7 +60,7 @@ return (
     <label className="label">
         Location
       </label>
-      <input name="newLocation" value={newLocation} onChange={(e) => setNewLocation(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newLocation" type="text" />
+      <input autoFocus name="newLocation" value={newLocation} onChange={(e) => setNewLocation(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="newLocation" type="text" />
       <p className="text-red text-xs italic">Please fill out this field.</p>    
     </div>
     </div>

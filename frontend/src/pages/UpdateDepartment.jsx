@@ -44,10 +44,10 @@ function UpdateDepartment() {
       const handleUpdateDepartment = (e) => {
         e.preventDefault()
     
-        const departmentData ={
+        const department ={
           name: updatedDepartment
         }
-        dispatch(updateDepartment({departmentData,departmentId}))
+        dispatch(updateDepartment({department,departmentId}))
       }
       const handleDeleteDepartment = (e) => {
         e.preventDefault()
@@ -83,7 +83,7 @@ return (
     <label className="label">
         Department
       </label>
-      <input name="updatedDepartment" value={updatedDepartment} onChange={(e) => setUpdatedDepartment(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedDepartment" type="text" />
+      <input autoFocus name="updatedDepartment" value={updatedDepartment} onChange={(e) => setUpdatedDepartment(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="updatedDepartment" type="text" />
     </div>
     </div>
     <div className="form-control mt-6">
