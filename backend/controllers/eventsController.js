@@ -3,7 +3,10 @@ const asyncHandler = require('express-async-handler')
 
 
 const Events = require('../models/eventModel')
-
+const Departments = require('../models/departmentModel')
+const Employee = require('../models/employeeModel')
+const Locations = require('../models/locationModel')
+const Sites = require('../models/siteModel')
 
 const addEvent = asyncHandler (async (req, res) => {
     
@@ -42,7 +45,53 @@ const getEvents = asyncHandler (async (req, res) => {
             res.status(404)
             throw new Error('events not found')
         }
-    
+        for (const event of eventsList) {
+
+            const siteId = event.site
+
+            const site = await Sites.findById(siteId)
+
+            if(site){
+                event.site = site.name
+            } else {
+                res.status(404)
+                throw new Error('site not found')
+            }
+
+            const departmentId = event.department
+
+            const department = await Departments.findById(departmentId)
+ 
+            if(department){
+                event.department = department.name
+            } else {
+                res.status(404)
+                throw new Error('department not found')
+            }
+
+            const locationId = event.location
+
+            const location = await Locations.findById(locationId)
+         
+            if(location){
+                event.location = location.name
+            } else {
+                res.status(404)
+                throw new Error('location not found')
+            }
+
+            const employeeId = event.employeename
+
+            const employee = await Employee.findById(employeeId)
+         
+            if(employee){
+                event.employeename = employee.firstname+' '+employee.lastname
+            } else {
+                res.status(404)
+                throw new Error('employee not found')
+            }
+        }
+
         res.status(200).json( eventsList )
     }
 })

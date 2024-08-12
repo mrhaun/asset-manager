@@ -20,11 +20,11 @@ connectDB()
 const gensampledata = () => {
     const employees = []
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 200; i++) {
         
         const firstname = faker.person.firstName()
         const lastname = faker.person.lastName()
-        const email = faker.internet.email()
+        const email = ''
         const site = ''
         const location = ''
         const department = ''

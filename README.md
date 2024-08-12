@@ -20,31 +20,6 @@ IT Inventory App I built to learn the MERN stack
 
 
 
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/mrhaun/asset-manager.git
-```
-
-Go to the project directory
-
-```bash
-  cd asset-manager
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server concurently with  the front end
-
-```bash
-  npm run dev
-```
 
 
 ## Authors

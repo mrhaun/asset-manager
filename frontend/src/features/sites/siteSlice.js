@@ -59,7 +59,7 @@ export const updateSite = createAsyncThunk('site/updateSite', async (siteData, t
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await siteService.update(siteData.siteId, siteData.siteData, token)
+        return await siteService.update(siteData.siteId, siteData.site, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()

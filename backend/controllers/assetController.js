@@ -81,6 +81,8 @@ const getAsset = asyncHandler (async (req, res) => {
     const siteId = asset.site
     const departmentId = asset.department
     const locationId = asset.location
+    const employeeId = asset.employeename    
+
 
     const category = await Categories.findById(categoryId)
  
@@ -127,8 +129,14 @@ const getAsset = asyncHandler (async (req, res) => {
         throw new Error('location not found')
     }
     
-
-    
+    const employee = await Employee.findById(employeeId)
+ 
+    if(employee){
+        asset.employeename = employee.firstname+' '+employee.lastname
+    } else {
+        res.status(404)
+        throw new Error('employee not found')
+    }
     
 
     res.status(200).json( asset )
@@ -152,6 +160,24 @@ const searchAsset = asyncHandler (async (req, res) => {
 
     if (!assetquery.searchTerm) {
         const assets = await Asset.find({})
+        
+
+        for (const asset of assets) {
+            const brandId = asset.brand
+
+            const brand = await Brands.findById(brandId)
+
+            if(brand){
+                asset.brand = brand.name
+            } else {
+                res.status(404)
+                throw new Error('brand not found')
+            }
+        }
+
+ 
+
+
         if (!assets){
             res.status(404)
             throw new Error('asset not found')

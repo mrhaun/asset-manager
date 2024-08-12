@@ -14,11 +14,11 @@ const initialState = {
 }
 
 
-export const createLocation = createAsyncThunk('locations/createLocation', async (LocationData, thunkAPI) => {
+export const createLocation = createAsyncThunk('locations/createLocation', async (locationData, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await locationService.create(LocationData, token)
+        return await locationService.create(locationData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -28,11 +28,11 @@ export const createLocation = createAsyncThunk('locations/createLocation', async
 
 })
 
-export const search = createAsyncThunk('locations/search', async (departmentData, thunkAPI) => {
+export const search = createAsyncThunk('locations/search', async (locationData, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token    
-        return await locationService.search(departmentData, token)
+        return await locationService.search(locationData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -41,11 +41,11 @@ export const search = createAsyncThunk('locations/search', async (departmentData
     }
 
 })
-export const getLocation = createAsyncThunk('locations/getLocation', async (departmentId, thunkAPI) => {
+export const getLocation = createAsyncThunk('locations/getLocation', async (locationId, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token      
-        return await locationService.get(departmentId, token)
+        return await locationService.get(locationId, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -55,11 +55,11 @@ export const getLocation = createAsyncThunk('locations/getLocation', async (depa
 
 })
 
-export const updateLocation = createAsyncThunk('locations/updateLocation', async (departmentData, thunkAPI) => {
+export const updateLocation = createAsyncThunk('locations/updateLocation', async (locationData, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await locationService.update(departmentData.departmentId, departmentData.location, token)
+        return await locationService.update(locationData.locationId, locationData.location, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()
@@ -69,11 +69,11 @@ export const updateLocation = createAsyncThunk('locations/updateLocation', async
 
 })
 
-export const deleteLocation = createAsyncThunk('locations/deleteLocation', async (departmentId, thunkAPI) => {
+export const deleteLocation = createAsyncThunk('locations/deleteLocation', async (locationId, thunkAPI) => {
 
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await locationService.remove(departmentId, token)
+        return await locationService.remove(locationId, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message)
         || error.message || error.toString()

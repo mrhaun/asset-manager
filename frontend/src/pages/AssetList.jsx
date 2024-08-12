@@ -17,7 +17,7 @@ function AssetList() {
   const [site, setSite] = useState('')
   const [department, setDepartment] = useState('')
   const [location, setLocation] = useState('')
-  const [assetsPerPage, setAssetsPerPage] = useState(5)
+  const [assetsPerPage, setAssetsPerPage] = useState(20)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)  
 
@@ -46,7 +46,6 @@ function AssetList() {
       department: e.target.department.value,
       location: e.target.location.value
     }
-    console.log(searchData)
     dispatch(search(searchData))
     setTotalPages(Math.ceil(assets.length / assetsPerPage))
   }
@@ -135,7 +134,7 @@ return (
         </label>
         <div className="relative">
           <select name="assetsperpage" value={assetsPerPage} onChange={(e) => setAssetsPerPage(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="assetsperpage">
-            <option value='5' >20</option>
+            <option value='20' >20</option>
             <option value='50' >50</option>
             <option value='100' >100</option>
             <option value='200' >200</option>

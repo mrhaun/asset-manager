@@ -3,66 +3,66 @@ import axios from 'axios'
 
 const API_URL = '/api/assets/sites/'
 
-const search = async (SiteData, token) => {
+const search = async (siteData, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.post(API_URL+'/search', SiteData, config)   
+    const response = await axios.post(API_URL+'/search', siteData, config)   
     return response.data
 
 }
 
-const get = async (SiteId, token) => {
+const get = async (siteId, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.get(API_URL+ SiteId, config)   
+    const response = await axios.get(API_URL+ siteId, config)   
     return response.data
 
 }
 
-const create = async (SiteData, token) => {
+const create = async (siteData, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.post(API_URL, SiteData, config)
+    const response = await axios.post(API_URL, siteData, config)
 
     return response.data
 }
 
-const update = async (SiteId, SiteData, token) => {
+const update = async (siteId, siteData, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.put(API_URL+ SiteId, SiteData, config)
+    const response = await axios.put(API_URL+ siteId, siteData, config)
 
     return response.data
 }
 
-const remove = async (SiteId, token) => {
+const remove = async (siteId, token) => {
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }    
-    const response = await axios.delete(API_URL + SiteId, config)
+    const response = await axios.delete(API_URL + siteId, config)
 
     return response.data
 }
-const SiteService = {
+const siteService = {
     search,
     get,
     create,
@@ -71,4 +71,4 @@ const SiteService = {
 
 }
 
-export default SiteService
+export default siteService

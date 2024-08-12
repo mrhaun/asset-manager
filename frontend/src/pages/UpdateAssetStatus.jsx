@@ -98,14 +98,20 @@ function UpdateAssetStatus() {
     </div>
   </div>  
 
-    {newstatus == 'Check Out' ? (<>
+    {newstatus === 'Check Out' ? (<>
       <div className="-mx-2 md:flex mb-3">
         <div className="md:w-1/2 px-3">
           <label className="label"  htmlFor="checkoutto">
             Check Out To: 
           </label>
           <div className="relative">
-              <select name="checkoutto" value={checkOutTo} onChange={(e) => setCheckOutTo(e.target.value)} className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" id="checkOutTo">
+              <select name="checkoutto" 
+              
+              value={checkOutTo} 
+              onChange={(e) => setCheckOutTo(e.target.value)} 
+              className="block appearance-none w-full bg-base-content border border-neutral text-base-200 py-3 px-4 pr-8 rounded" 
+              id="checkOutTo">
+              
               <option>Person</option>
               <option>Site</option>
               </select>
@@ -114,7 +120,7 @@ function UpdateAssetStatus() {
       </div>
 
         
-        {checkOutTo == 'Person' ? (<>
+        {checkOutTo === 'Person' ? (<>
         <div className="-mx-3 md:flex mb-6">          
             <div className="md:w-1/2 px-3">
               <label className="label"  htmlFor="employee">

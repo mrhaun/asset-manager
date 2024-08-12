@@ -28,31 +28,25 @@ function AddAsset() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()    
-  const {isError, isSuccess, isLoading, message, imagepath, imageurl} = useSelector((state) => state.asset)
+  const {isError, isSuccess, isLoading, updateComplete, message} = useSelector((state) => state.asset)
 
   useEffect(() => {
 
     if (isError) {
       toast.error(message)
     }
-    if (isSuccess) {
-      
+    if(updateComplete) {
+      toast.success('Asset Added')      
+      dispatch(reset())      
+      navigate('/assetlist') 
+    }        
+    if (isSuccess) {      
       dispatch(reset())
-      navigate('/assetlist')
-
     }
     dispatch(reset())
   }, [isError, isSuccess, message, navigate, dispatch])
 
-  function uploadImage(e) {
 
-    const imageform = new FormData()
-
-    imageform.append('image', e.target.files[0])  
-
-    //dispatch(addImage(imageform)) 
-
-}    
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -95,7 +89,7 @@ function AddAsset() {
     <label className="label" htmlFor="assettag">
         Asset Tag
       </label>
-      <input name="assettag" value={assettag} onChange={(e) => setAssettag(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="assettag" type="text" />
+      <input autoFocus name="assettag" value={assettag} onChange={(e) => setAssettag(e.target.value)} className="w-full bg-base-content border border-neutral text-base-200 rounded py-3 px-4 mb-3" id="assettag" type="text" />
       <p className="text-red text-xs italic">Please fill out this field.</p>    
     </div>
     <div className="md:w-1/2 px-3">
@@ -204,12 +198,6 @@ function AddAsset() {
         </select>
       </div>      
     </div>
-    <div className="md:w-1/2 px-3">
-      <label className="label" htmlFor="image">
-        Upload Image
-      </label>
-      <input type="file" id="image" name="image" className="file-input file-input-bordered w-full max-w-xs" onChange={e => uploadImage(e)}  accept=".jpg,.png,.jpeg,.gif" />
-    </div> 
   </div>
   <div className="form-control mt-6">
       <div className="relative">

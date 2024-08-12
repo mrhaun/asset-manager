@@ -23,6 +23,7 @@ function CategoryOption() {
     return (
       <>
      
+
      {categories.map(category => (
        <option value={category._id} key={category._id}>{category.name}</option>
       ))}  
